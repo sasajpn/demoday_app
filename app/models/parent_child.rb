@@ -1,12 +1,15 @@
 # == Schema Information
 #
-# Table name: authors
+# Table name: parent_children
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
+#  parent_id  :integer
+#  child_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Author < ActiveRecord::Base
+class ParentChild < ActiveRecord::Base
+  belongs_to :parent
+  belongs_to :child
 end

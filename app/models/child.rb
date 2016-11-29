@@ -1,14 +1,16 @@
 # == Schema Information
 #
-# Table name: announces
+# Table name: children
 #
 #  id         :integer          not null, primary key
 #  book_id    :integer
-#  start_dat  :date
+#  parent_id  :integer
+#  recommend  :text(65535)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Announce < ActiveRecord::Base
+class Child < ActiveRecord::Base
   belongs_to :book
+  belongs_to :parent
 end

@@ -1,12 +1,12 @@
 class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
+      t.references :user, index: true, foreign_key: true
       t.string :title
-      t.references :author, index: true, foreign_key: true
+      t.string :author
+      t.integer :status
 
       t.timestamps null: false
     end
-
-    add_index :books, :title, unique: true
   end
 end

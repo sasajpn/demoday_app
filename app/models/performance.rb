@@ -1,14 +1,15 @@
 # == Schema Information
 #
-# Table name: announces
+# Table name: performances
 #
 #  id         :integer          not null, primary key
-#  book_id    :integer
-#  start_dat  :date
+#  user_id    :integer
+#  evaluate   :integer
+#  comment    :text(65535)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Announce < ActiveRecord::Base
-  belongs_to :book
+class Performance < ActiveRecord::Base
+  belongs_to :user
 end

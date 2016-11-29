@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128214724) do
+ActiveRecord::Schema.define(version: 20161129050509) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",           limit: 4
@@ -39,31 +39,35 @@ ActiveRecord::Schema.define(version: 20161128214724) do
   add_index "animals", ["name"], name: "index_animals_on_name", unique: true, using: :btree
 
   create_table "announces", force: :cascade do |t|
-    t.integer  "user_book_id", limit: 4
-    t.date     "start_day"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "book_id",    limit: 4
+    t.date     "start_dat"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "announces", ["user_book_id"], name: "index_announces_on_user_book_id", using: :btree
-
-  create_table "authors", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "authors", ["name"], name: "index_authors_on_name", unique: true, using: :btree
+  add_index "announces", ["book_id"], name: "index_announces_on_book_id", using: :btree
 
   create_table "books", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
-    t.integer  "author_id",  limit: 4
+    t.string   "author",     limit: 255
+    t.integer  "status",     limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
-  add_index "books", ["title"], name: "index_books_on_title", unique: true, using: :btree
+  add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
+
+  create_table "children", force: :cascade do |t|
+    t.integer  "book_id",    limit: 4
+    t.integer  "parent_id",  limit: 4
+    t.text     "recommend",  limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "children", ["book_id"], name: "index_children_on_book_id", using: :btree
+  add_index "children", ["parent_id"], name: "index_children_on_parent_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -75,25 +79,34 @@ ActiveRecord::Schema.define(version: 20161128214724) do
   add_index "likes", ["announce_id"], name: "index_likes_on_announce_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
-  create_table "parent_wants", force: :cascade do |t|
-    t.integer  "user_book_id", limit: 4
-    t.integer  "parent_id",    limit: 4
-    t.text     "recommend",    limit: 255
+  create_table "parent_children", force: :cascade do |t|
+    t.integer  "parent_id",  limit: 4
+    t.integer  "child_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "parent_children", ["child_id"], name: "index_parent_children_on_child_id", using: :btree
+  add_index "parent_children", ["parent_id"], name: "index_parent_children_on_parent_id", using: :btree
+
+  create_table "parents", force: :cascade do |t|
+    t.integer  "book_id",    limit: 4
+    t.date     "deadline"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "parents", ["book_id"], name: "index_parents_on_book_id", using: :btree
+
+  create_table "performances", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "evaluate",   limit: 4
+    t.text     "comment",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "parent_wants", ["parent_id"], name: "index_parent_wants_on_parent_id", using: :btree
-  add_index "parent_wants", ["user_book_id"], name: "index_parent_wants_on_user_book_id", using: :btree
-
-  create_table "parents", force: :cascade do |t|
-    t.integer  "user_book_id", limit: 4
-    t.date     "deadline"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "parents", ["user_book_id"], name: "index_parents_on_user_book_id", using: :btree
+  add_index "performances", ["user_id"], name: "index_performances_on_user_id", using: :btree
 
   create_table "user_animals", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -104,29 +117,6 @@ ActiveRecord::Schema.define(version: 20161128214724) do
 
   add_index "user_animals", ["animal_id"], name: "index_user_animals_on_animal_id", using: :btree
   add_index "user_animals", ["user_id"], name: "index_user_animals_on_user_id", using: :btree
-
-  create_table "user_book_wants", force: :cascade do |t|
-    t.integer  "parent_id",      limit: 4
-    t.integer  "parent_want_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "user_book_wants", ["parent_id"], name: "index_user_book_wants_on_parent_id", using: :btree
-  add_index "user_book_wants", ["parent_want_id"], name: "index_user_book_wants_on_parent_want_id", using: :btree
-
-  create_table "user_books", force: :cascade do |t|
-    t.integer  "book_id",    limit: 4
-    t.integer  "user_id",    limit: 4
-    t.integer  "status",     limit: 4
-    t.boolean  "parent",               default: false, null: false
-    t.boolean  "child",                default: false, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-  end
-
-  add_index "user_books", ["book_id"], name: "index_user_books_on_book_id", using: :btree
-  add_index "user_books", ["user_id"], name: "index_user_books_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               limit: 255
@@ -155,17 +145,16 @@ ActiveRecord::Schema.define(version: 20161128214724) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "announces", "user_books"
-  add_foreign_key "books", "authors"
+  add_foreign_key "announces", "books"
+  add_foreign_key "books", "users"
+  add_foreign_key "children", "books"
+  add_foreign_key "children", "parents"
   add_foreign_key "likes", "announces"
   add_foreign_key "likes", "users"
-  add_foreign_key "parent_wants", "parents"
-  add_foreign_key "parent_wants", "user_books"
-  add_foreign_key "parents", "user_books"
+  add_foreign_key "parent_children", "children"
+  add_foreign_key "parent_children", "parents"
+  add_foreign_key "parents", "books"
+  add_foreign_key "performances", "users"
   add_foreign_key "user_animals", "animals"
   add_foreign_key "user_animals", "users"
-  add_foreign_key "user_book_wants", "parent_wants"
-  add_foreign_key "user_book_wants", "parents"
-  add_foreign_key "user_books", "books"
-  add_foreign_key "user_books", "users"
 end
