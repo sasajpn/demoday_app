@@ -6,6 +6,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Database/Model
 gem 'mysql2', '~> 0.3.21'
+gem 'enum_help'
 
 # Views/Presentation
 gem 'uglifier', '>= 1.3.0'

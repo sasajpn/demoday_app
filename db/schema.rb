@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161129050509) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "books", ["user_id", "title", "author"], name: "index_books_on_user_id_and_title_and_author", unique: true, using: :btree
   add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
 
   create_table "children", force: :cascade do |t|

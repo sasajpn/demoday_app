@@ -1,21 +1,11 @@
 Rails.application.routes.draw do
-  get 'books/index'
-
-  get 'books/show'
-
-  get 'books/new'
-
-  get 'books/create'
-
-  get 'books/edit'
-
-  get 'books/update'
-
-  get 'books/destroy'
-
   devise_for :users
-  resources :authors
 
+  resources :users do
+    resources :books, shallow: true do
+      resources :parents, only: [:new, :create], shallow: true
+    end
+  end
 
 
 

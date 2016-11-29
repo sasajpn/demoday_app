@@ -1,0 +1,6 @@
+<%= bootstrap_form_for [ @user, @book ] do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :author %>
+  <%= f.select :status, Book.statuses_i18n.invert %>
+  <%= f.submit %>
+<% end %>

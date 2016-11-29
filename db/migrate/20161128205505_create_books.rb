@@ -8,5 +8,7 @@ class CreateBooks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :books, [ :user_id, :title, :author ], unique: true
   end
 end

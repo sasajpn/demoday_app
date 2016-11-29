@@ -1,2 +1,38 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<section class="main-container padding-bottom-clear">
+  <div class="light-gray-bg pv-20 section mt-20">
+    <div class="container">
+      <h4 class="mb-20"><strong>My Book</strong></h4>
+      <div class="row grid-space-10">
+        <% @books.each do |book| %>
+          <div class="col-sm-6 col-md-3">
+            <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+              <div class="overlay-container overlay-visible">
+              <%= image_tag('blog-1.jpg') %>
+              <div class="overlay-bottom">
+              <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</p>
+              </div>
+              </div>
+              <div class="body">
+                <h3 class="margin-clear"><%= book.title %></h3>
+                <small><%= book.author %></small>
+                <div class="separator mt-10"></div>
+                <ul class="social-links circle colored margin-clear">
+                  <%= @parent = Parent.new %>
+                  <li class="skype"></li>
+                  <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                  <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
+                  <li class="skype"><%= link_to "削除", book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'} %></li>
+                </ul>
+                <% if book.parent.nil? %>
+                  <%= render partial: 'parents/form', locals: { book: book } %>
+                <% else %>
+                  <p>取引中</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

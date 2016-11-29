@@ -12,7 +12,19 @@
 #
 
 class Book < ActiveRecord::Base
+  has_one :parent, dependent: :destroy
+  has_one :child
+
   belongs_to :user
 
-  validates :title, presence: true, uniqueness: true
+  enum status: { very_good: 3, good: 2, bad: 1, very_bad: 0 }
+
+  validates :title, :author,
+    presence: true
+
+  validates :user_id,
+    uniqueness: {
+      scope: [ :title, :author ],
+      message: "その本はすでに登録しています" }
+
 end

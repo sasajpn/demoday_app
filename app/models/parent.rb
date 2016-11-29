@@ -10,5 +10,5 @@
 #
 
 class Parent < ActiveRecord::Base
-  belongs_to :user_book
+  belongs_to :book
 end
