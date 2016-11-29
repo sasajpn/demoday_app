@@ -14,14 +14,18 @@
 ActiveRecord::Schema.define(version: 20161128214724) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.integer  "postal_code",  limit: 4
-    t.string   "prefecture",   limit: 255
-    t.string   "municipality", limit: 255
-    t.string   "street",       limit: 255
-    t.string   "building",     limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",           limit: 4
+    t.string   "given_name",        limit: 255
+    t.string   "given_name_kana",   limit: 255
+    t.string   "family_name",       limit: 255
+    t.string   "family_namee_kana", limit: 255
+    t.integer  "postal_code",       limit: 4
+    t.string   "prefecture",        limit: 255
+    t.string   "municipality",      limit: 255
+    t.string   "street",            limit: 255
+    t.string   "building",          limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
@@ -125,19 +129,18 @@ ActiveRecord::Schema.define(version: 20161128214724) do
   add_index "user_books", ["user_id"], name: "index_user_books_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "user_name",              limit: 255
+    t.string   "username",               limit: 255
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.date     "birthday"
-    t.string   "given_name",             limit: 255
-    t.string   "given_name_kana",        limit: 255
-    t.string   "family_name",            limit: 255
-    t.string   "family_namee_kana",      limit: 255
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -149,7 +152,7 @@ ActiveRecord::Schema.define(version: 20161128214724) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
   add_foreign_key "announces", "user_books"

@@ -2,6 +2,10 @@ class CreateAddresses < ActiveRecord::Migration
   def change
     create_table :addresses do |t|
       t.references :user, index: true, foreign_key: true
+      t.string :given_name
+      t.string :given_name_kana
+      t.string :family_name
+      t.string :family_namee_kana
       t.integer :postal_code
       t.string :prefecture
       t.string :municipality
