@@ -1,12 +1,14 @@
 class ParentsController < ApplicationController
-  before_action :set_book
-  before_action :already_parent
+  before_action :set_book, only: [:create]
+  before_action :already_negotiate, only: [:create]
+
+  def index
+    @parents = Parent.order("deadline DESC").page(params[:page])
+  end
 
   def create
     @parent = Parent.new(parent_params)
-    if @parent.save
-      redirect_to user_books_url(@book.user)
-    end
+    redirect_to user_books_url(@book.user) if @parent.save
   end
 
   private
@@ -19,9 +21,9 @@ class ParentsController < ApplicationController
     params.require(:parent).permit(:book_id, :deadline)
   end
 
-  def already_parent
+  def already_negotiate
     @book = Book.find(params[:book_id])
-    if @book.parent.persisted?
+    if @book.already_negotiate?
       redirect_to user_books_url(@book.user), notice: "すでに取引中です。"
     end
   end

@@ -13,7 +13,7 @@
 
 class Book < ActiveRecord::Base
   has_one :parent, dependent: :destroy
-  has_one :child
+  has_one :child, dependent: :destroy
 
   belongs_to :user
 
@@ -26,5 +26,9 @@ class Book < ActiveRecord::Base
     uniqueness: {
       scope: [ :title, :author ],
       message: "その本はすでに登録しています" }
+
+  def already_negotiate?
+    parent.present? && child.present?
+  end
 
 end

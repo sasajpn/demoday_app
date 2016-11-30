@@ -18,6 +18,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
 
+gem 'data-confirm-modal'
+
 # Authenticate
 gem 'devise'
 

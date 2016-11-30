@@ -94,6 +94,8 @@ GEM
     config (1.3.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.1.1)
+    data-confirm-modal (1.2.0)
+      railties (>= 3.0)
     debug_inspector (0.0.2)
     deep_merge (1.1.1)
     devise (4.2.0)
@@ -272,6 +274,7 @@ DEPENDENCIES
   capistrano3-unicorn
   coffee-rails (~> 4.1.0)
   config
+  data-confirm-modal
   devise
   dotenv-rails
   enum_help

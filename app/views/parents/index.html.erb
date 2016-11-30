@@ -1,0 +1,67 @@
+<section class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="main col-md-12">
+        <h1 class="page-title">人気の取引</h1>
+        <div class="separator-2"></div>
+        <div class="row grid-space-10">
+          <div class="col-sm-4">
+            <div class="image-box team-member style-2 shadow bordered light-gray-bg text-center">
+              <div class="overlay-container overlay-visible">
+              <img src="images/team-member-1.jpg" alt="">
+              <div class="overlay-bottom">
+              <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates praesentium nulla cupiditate!</p>
+              </div>
+              </div>
+              <div class="body">
+              <h3 class="margin-clear">Jane Doe</h3>
+              <small>CEO</small>
+              <div class="separator mt-10"></div>
+              <ul class="social-links circle dark margin-clear">
+              <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+              <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+              <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
+              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <h1 class="page-title">最近開始された取引</h1>
+        <div class="separator-2"></div>
+        <div class="row grid-space-10">
+          <% @parents.each do |parent| %>
+            <div class="col-sm-6 col-md-3">
+              <div class="image-box team-member style-2 bordered dark-bg mb-20 text-center">
+                <div class="overlay-container overlay-visible">
+                <%= image_tag('blog-1.jpg') %>
+                <div class="overlay-bottom">
+                <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</p>
+                </div>
+                </div>
+                <div class="body">
+                <h3 class="margin-clear"><%= parent.book.title %></h3>
+                <small><%= parent.book.author %></small>
+                <div class="separator mt-10"></div>
+                <ul class="social-links circle dark margin-clear">
+                <li class="facebook"></li>
+                <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+                <%= link_to "ほしいね！", new_parent_child_path(parent),
+                  data: {
+                    confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
+                    commit: "交渉開始",
+                    cancel: "取り消す"
+                  },
+                     title: "交渉開始の確認" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
