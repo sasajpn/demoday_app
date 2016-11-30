@@ -11,6 +11,8 @@
 #
 
 class Child < ActiveRecord::Base
+  has_one :parent_child
+
   belongs_to :book
   belongs_to :parent
 end

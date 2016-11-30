@@ -7,6 +7,11 @@ class ParentsController < ApplicationController
     @parents = Parent.order("deadline DESC").page(params[:page])
   end
 
+  def show
+    @parent = Parent.find(params[:id])
+    @children = Child.where(parent_id: @parent.id)
+  end
+
   def create
     @parent = Parent.new(parent_params)
     redirect_to user_books_url(@book.user) if @parent.save

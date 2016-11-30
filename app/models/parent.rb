@@ -10,6 +10,8 @@
 #
 
 class Parent < ActiveRecord::Base
+  has_one :parent_child
+
   belongs_to :book
 
 end

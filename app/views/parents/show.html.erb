@@ -1,0 +1,42 @@
+<div class="page-wrapper">
+			<section class="section pv-40 stats">
+				<div class="container">
+					<h3 class="text-center title">Our <strong>Team</strong></h3>
+					<div class="separator"></div>
+          <% @children.each do |child| %>
+  					<div class="image-box team-member style-3-b">
+  						<div class="row">
+  							<div class="col-sm-6 col-md-4 col-lg-3">
+  								<div class="overlay-container overlay-visible">
+                    <%= image_tag('blog-1.jpg') %>
+  								</div>
+  							</div>
+  							<div class="col-sm-6 col-md-4 col-lg-6">
+  								<div class="body">
+  									<h3 class="title margin-clear"><%= child.book.title %> - <small><%= child.book.author %></small></h3>
+  									<div class="separator-2 mt-10"></div>
+                    <% if child.recommend.present? %>
+    									<p><%= child.recommend %></p>
+                    <% end %>
+  									<ul class="social-links circle margin-clear colored">
+  										<li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+  										<li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+  										<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+  									</ul>
+  									<br>
+                    <% if @parent.parent_child.nil? %>
+                      <%= @parent_child = ParentChild.new %>
+                      <%= render partial: 'parent_children/form', locals: { parent: @parent, child: child } %>
+                    <% else %>
+                      <p><%= @parent.parent_child.child.book.user.username %>さんの本と交渉が成立しています。</p>
+                    <% end %>
+  									<a href="tel:123123123123123" class="btn btn-gray-transparent"><i class="pr-10 fa fa-phone"></i>Call</a>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+          <% end %>
+					<div class="separator-3"></div>
+				</div>
+			</section>
+		</div>

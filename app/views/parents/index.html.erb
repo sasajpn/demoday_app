@@ -45,7 +45,7 @@
                 <small><%= parent.book.author %></small>
                 <div class="separator mt-10"></div>
                 <ul class="social-links circle dark margin-clear">
-                <li class="facebook"></li>
+                <li class="facebook"><%= link_to parent_path(parent) do %><i class="fa fa-facebook"></i><% end %></li>
                 <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
                 <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
                 </ul>

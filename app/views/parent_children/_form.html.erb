@@ -1,0 +1,7 @@
+<%= form_for [ parent, @parent_child ] do |f| %>
+  <%= f.hidden_field :parent_id, value: parent.id %>
+  <%= f.hidden_field :child_id, value: child.id %>
+  <%= f.submit "ほしいね！",
+    class: "btn btn-gray-transparent", 
+    data: { confirm: "この本にほしいね！を押すと、この本との取引が成立している状態になりますが、よろしいですか？(取引を成立させたい本は期限内であれば変更可能です。)" }  %>
+<% end %>

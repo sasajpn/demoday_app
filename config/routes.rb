@@ -5,17 +5,11 @@ Rails.application.routes.draw do
     resources :books, shallow: true do
       resources :parents, only: [:create], shallow: true do
         resources :children, only: [:new, :create], shallow: true
+        resources :parent_children, only: [:create], shallow: true
       end
     end
   end
 
-  resources :parents, only: [:index]
-
-
-
-
-
-
-
+  resources :parents, only: [:index, :show]
 
 end
