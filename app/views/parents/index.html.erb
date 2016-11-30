@@ -49,13 +49,17 @@
                 <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
                 <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
                 </ul>
-                <%= link_to "ほしいね！", new_parent_child_path(parent),
-                  data: {
-                    confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
-                    commit: "交渉開始",
-                    cancel: "取り消す"
-                  },
-                     title: "交渉開始の確認" %>
+                <% if @user.books.joins(:child).nil? %>
+                  <%= link_to "ほしいね！", new_parent_child_path(parent),
+                    data: {
+                      confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
+                      commit: "交渉開始",
+                      cancel: "取り消す"
+                    },
+                       title: "交渉開始の確認" %>
+                <% else %>
+                  <p>交渉中</p>
+                <% end %>
                 </div>
               </div>
             </div>

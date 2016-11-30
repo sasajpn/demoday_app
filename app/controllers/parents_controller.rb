@@ -1,5 +1,6 @@
 class ParentsController < ApplicationController
   before_action :set_book, only: [:create]
+  before_action :set_user
   before_action :already_negotiate, only: [:create]
 
   def index
@@ -15,6 +16,10 @@ class ParentsController < ApplicationController
 
   def set_book
     @book = Book.find(params[:book_id])
+  end
+
+  def set_user
+    @user = User.find(1)
   end
 
   def parent_params

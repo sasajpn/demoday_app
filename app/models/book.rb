@@ -30,5 +30,4 @@ class Book < ActiveRecord::Base
   def already_negotiate?
     parent.present? && child.present?
   end
-
 end
