@@ -2,6 +2,7 @@ class ChildrenController < ApplicationController
   before_action :set_child, only: [:destroy]
   before_action :no_book, only: [:create]
   before_action :become_deadline, only: [:new, :create]
+  before_action :already_done, only: [:new, :create]
   before_action :set_parent, except: [:destroy]
 
   def new
@@ -46,6 +47,13 @@ class ChildrenController < ApplicationController
   def become_deadline
     @parent = Parent.find(params[:parent_id])
     if @parent.deadline < Time.now()
+      redirect_to parents_url, notice: "その本の取引は終了しています。"
+    end
+  end
+
+  def already_done
+    @parent = Parent.find(params[:parent_id])
+    if @parent.parent_child.present?
       redirect_to parents_url, notice: "その本の取引は終了しています。"
     end
   end
