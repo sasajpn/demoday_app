@@ -12,7 +12,7 @@
 <section class="main-container padding-bottom-clear">
   <div class="light-gray-bg pv-20 section mt-20">
     <div class="container">
-      <%= link_to new_user_book_path(@user), class: "btn btn-animated btn-lg btn-dark" do %>新しく本を登録する <i class="fa fa-book pl-10"></i><% end %>
+      <%= link_to new_user_book_path(current_user), class: "btn btn-animated btn-lg btn-dark" do %>新しく本を登録する <i class="fa fa-book pl-10"></i><% end %>
       <div class="separator"></div>
       <div class="row grid-space-10">
         <% @books.each do |book| %>

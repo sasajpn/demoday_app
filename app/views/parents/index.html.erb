@@ -43,10 +43,15 @@
                   <h3 class="margin-clear"><%= parent.book.title %></h3>
                   <small><%= parent.book.author %></small>
                   <div class="separator mt-10"></div>
-                  <% if @user == parent.book.user %>
+                  <% if current_user == parent.book.user %>
                     <span class="label label-default">あなたが開始した取引です</span>
                     <p><%= link_to parent_path(parent), class: "btn btn-gray btn-sm" do %>ほしいね！を見る<% end %></p>
-                  <% elsif parent.children.where(book_id: @user.books).blank? %>
+                  <% elsif current_user.books.blank? %>
+                    <span class="label label-danger">マイブックが登録されていません！</span>
+                    <%= link_to new_user_book_path(current_user), class: "btn btn-animated btn-sm btn-success" do %>
+                      マイブックの登録 <i class="fa fa-arrow-right"></i>
+                    <% end %>
+                  <% elsif parent.children.where(book_id: current_user.books).blank? %>
                     <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
                       data: {
                         confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
@@ -56,7 +61,7 @@
                          title: "交渉開始の確認" %>
                   <% else %>
                     <span class="label label-danger">あなたはすでに交渉中です</span>
-                    <% @child = parent.children.where(book_id: @user.books).first %>
+                    <% @child = parent.children.where(book_id: current_user.books).first %>
                     <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-danger btn-sm",
                        method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
                   <% end %>

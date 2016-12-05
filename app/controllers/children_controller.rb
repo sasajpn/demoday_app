@@ -1,10 +1,10 @@
 class ChildrenController < ApplicationController
   before_action :set_child, only: [:destroy]
-  before_action :set_user_books
+  before_action :no_book, only: [:create]
   before_action :set_parent, except: [:destroy]
 
   def new
-      @child = Child.new
+    @child = Child.new
   end
 
   def create
@@ -35,15 +35,9 @@ class ChildrenController < ApplicationController
     @parent = Parent.find(params[:parent_id])
   end
 
-  def set_user_books
-    @user = current_user
-    @books = @user.books
+  def no_book
+    if current_user.books.blank?
+      redirect_to parents_url, notice: "マイブックが一冊も登録されていません。"
+    end
   end
-
-  # def already_negotiate
-  #   @book = Book.find(params[:book_id])
-  #   if @book.already_negotiate?
-  #     redirect_to user_books_url, notice: "すでに取引中です。"
-  #   end
-  # end
 end

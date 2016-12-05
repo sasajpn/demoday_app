@@ -48,8 +48,4 @@ class BooksController < UsersController
   def set_book
     @book = Book.find(params[:id])
   end
-
-  def set_user
-    @user = current_user
-  end
 end
