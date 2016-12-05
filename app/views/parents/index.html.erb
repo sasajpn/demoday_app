@@ -43,7 +43,10 @@
                   <h3 class="margin-clear"><%= parent.book.title %></h3>
                   <small><%= parent.book.author %></small>
                   <div class="separator mt-10"></div>
-                  <% if @user.books.joins(:child).nil? %>
+                  <% if @user == parent.book.user %>
+                    <span class="label label-default">あなたが開始した取引です</span>
+                    <p><%= link_to parent_path(parent), class: "btn btn-gray btn-sm" do %>ほしいね！を見る<% end %></p>
+                  <% elsif parent.children.where(book_id: @user.books).blank? %>
                     <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
                       data: {
                         confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
@@ -51,9 +54,6 @@
                         cancel: "取り消す"
                       },
                          title: "交渉開始の確認" %>
-                  <% elsif @user = parent.book.user %>
-                    <span class="label label-default">あなたが開始した取引です</span>
-                    <p><%= link_to parent_path(parent), class: "btn btn-gray btn-sm" do %>ほしいね！を見る<% end %></p>
                   <% else %>
                     <span class="label label-danger">あなたはすでに交渉中です</span>
                   <% end %>

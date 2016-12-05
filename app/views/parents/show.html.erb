@@ -1,7 +1,7 @@
 <div class="page-wrapper">
 			<section class="section pv-40 stats">
 				<div class="container">
-					<h3 class="text-center title"><%= @parent.book.title %>への交渉</h3>
+					<h3 class="text-center title"><%= @parent.book.title %>の取引状況</h3>
 					<div class="separator"></div>
           <% @children.each do |child| %>
   					<div class="image-box team-member style-3-b">
@@ -25,12 +25,14 @@
   									</ul>
   									<br>
                     <% if @parent.parent_child.nil? %>
-                      <%= @parent_child = ParentChild.new %>
+                      <% @parent_child = ParentChild.new %>
                       <%= render partial: 'parent_children/form', locals: { parent: @parent, child: child } %>
-                    <% else %>
-                      <p><%= @parent.parent_child.child.book.user.username %>さんの本と交渉が成立しています。</p>
+                    <% elsif @parent.parent_child.present? && !@parent.parent_child.child %>
+											<% @parent_child = @parent.parent_child %>
+											<%= render partial: 'parent_children/form', locals: { parent: @parent, child: child } %>
+										<% else %>
+                      <p>現在、<%= @parent.parent_child.child.book.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しています。</p>
                     <% end %>
-  									<a href="tel:123123123123123" class="btn btn-gray-transparent"><i class="pr-10 fa fa-phone"></i>Call</a>
   								</div>
   							</div>
   						</div>
