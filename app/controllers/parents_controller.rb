@@ -1,10 +1,9 @@
 class ParentsController < ApplicationController
   before_action :set_book, only: [:create]
-  before_action :set_user
   before_action :already_negotiate, only: [:create]
 
   def index
-    @parents = Parent.order("deadline DESC").page(params[:page])
+    @parents = Parent.where('deadline > ?', Time.now()).order("deadline DESC").page(params[:page])
   end
 
   def show
@@ -21,10 +20,6 @@ class ParentsController < ApplicationController
 
   def set_book
     @book = Book.find(params[:book_id])
-  end
-
-  def set_user
-    @user = current_user
   end
 
   def parent_params

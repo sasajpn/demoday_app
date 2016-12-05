@@ -1,10 +1,12 @@
 class ChildrenController < ApplicationController
   before_action :set_child, only: [:destroy]
   before_action :no_book, only: [:create]
+  before_action :become_deadline, only: [:new, :create]
   before_action :set_parent, except: [:destroy]
 
   def new
     @child = Child.new
+    @books = current_user.books
   end
 
   def create
@@ -38,6 +40,13 @@ class ChildrenController < ApplicationController
   def no_book
     if current_user.books.blank?
       redirect_to parents_url, notice: "マイブックが一冊も登録されていません。"
+    end
+  end
+
+  def become_deadline
+    @parent = Parent.find(params[:parent_id])
+    if @parent.deadline < Time.now()
+      redirect_to parents_url, notice: "その本の取引は終了しています。"
     end
   end
 end
