@@ -1,5 +1,11 @@
 class ParentChildrenController < ApplicationController
+  before_action :set_parent_child, only: [:show]
   before_action :set_parent
+
+  def show
+    @parent_user = @parent_child.parent.book.user
+    @child_user = @parent_child.child.book.user
+  end
 
   def create
     @parent_child = ParentChild.new(parent_child_params)
@@ -10,6 +16,10 @@ class ParentChildrenController < ApplicationController
 
   def parent_child_params
     params.require(:parent_child).permit(:parent_id, :child_id)
+  end
+
+  def set_parent_child
+    @parent_child = ParentChild.find(params[:id])
   end
 
   def set_parent
