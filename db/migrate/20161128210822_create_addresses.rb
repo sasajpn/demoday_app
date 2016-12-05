@@ -5,7 +5,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :given_name
       t.string :given_name_kana
       t.string :family_name
-      t.string :family_namee_kana
+      t.string :family_name_kana
       t.integer :postal_code
       t.string :prefecture
       t.string :municipality

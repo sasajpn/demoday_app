@@ -1,32 +1,41 @@
+<div class="page-wrapper">
+<div class="banner default-translucent-bg" style="background-image:url('images/page-about-me-banner.jpg');background-position:50% 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 text-center col-md-offset-2 pv-20">
+        <h1 class="title object-non-visible animated object-visible fadeIn" data-animation-effect="fadeIn" data-effect-delay="100">マイブック</h1>
+        <div class="separator object-non-visible mt-10 animated object-visible fadeIn" data-animation-effect="fadeIn" data-effect-delay="100"></div>
+      </div>
+    </div>
+  </div>
+</div>
 <section class="main-container padding-bottom-clear">
   <div class="light-gray-bg pv-20 section mt-20">
     <div class="container">
-      <h4 class="mb-20"><strong>My Book</strong></h4>
+      <%= link_to new_user_book_path(@user), class: "btn btn-animated btn-lg btn-dark" do %>新しく本を登録する <i class="fa fa-book pl-10"></i><% end %>
+      <div class="separator"></div>
       <div class="row grid-space-10">
         <% @books.each do |book| %>
           <div class="col-sm-6 col-md-3">
-            <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+            <div class="book-list image-box team-member style-2 shadow bordered mb-20 text-center">
               <div class="overlay-container overlay-visible">
               <%= image_tag('blog-1.jpg') %>
-              <div class="overlay-bottom">
-              <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</p>
-              </div>
               </div>
               <div class="body">
                 <h3 class="margin-clear"><%= book.title %></h3>
                 <small><%= book.author %></small>
                 <div class="separator mt-10"></div>
-                <ul class="social-links circle colored margin-clear">
-                  <%= @parent = Parent.new %>
-                  <li class="skype"></li>
-                  <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-                  <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
-                  <li class="skype"><%= link_to "削除", book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？'} %></li>
-                </ul>
+                <% if book.parent.nil? && book.child.nil? %>
+                  <%= link_to edit_book_path(book), class: "btn btn-success btn-sm" do %>編集 <i class="fa fa-edit pl-10"></i><% end %>
+                  <%= link_to book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: "btn btn-danger btn-sm" do %>削除 <i class="fa fa-trash-o pl-10"></i><% end %>
+                <% end %>
+                <% @parent = Parent.new %>
                 <% if book.parent.nil? %>
                   <%= render partial: 'parents/form', locals: { book: book } %>
-                <% else %>
-                  <p>取引中</p>
+                <% elsif book.parent.present? %>
+                  <%= link_to parent_path(book.parent), class:"btn btn-gray" do %>あなたが取引主です <i class="fa fa-folder-open pl-10"></i><% end %>
+                <% elsif book.child.presnent? %>
+                  <span class="label label-default"><%= book.child.parent.book.title %></span>
                 <% end %>
               </div>
             </div>
@@ -36,3 +45,4 @@
     </div>
   </div>
 </section>
+</div>

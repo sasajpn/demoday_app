@@ -33,33 +33,30 @@
         <div class="row grid-space-10">
           <% @parents.each do |parent| %>
             <div class="col-sm-6 col-md-3">
-              <div class="image-box team-member style-2 bordered dark-bg mb-20 text-center">
+              <h4><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %></h4>
+              <div class="book-list image-box team-member style-2 shadow bordered mb-20 text-center">
                 <div class="overlay-container overlay-visible">
-                <%= image_tag('blog-1.jpg') %>
-                <div class="overlay-bottom">
-                <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</p>
+                  <%= image_tag('blog-1.jpg') %>
                 </div>
-                </div>
+                <span class="label label-info"><%= parent.children.count %>人がほしいね！と言っています</span>
                 <div class="body">
-                <h3 class="margin-clear"><%= parent.book.title %></h3>
-                <small><%= parent.book.author %></small>
-                <div class="separator mt-10"></div>
-                <ul class="social-links circle dark margin-clear">
-                <li class="facebook"><%= link_to parent_path(parent) do %><i class="fa fa-facebook"></i><% end %></li>
-                <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-                <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-                <% if @user.books.joins(:child).nil? %>
-                  <%= link_to "ほしいね！", new_parent_child_path(parent),
-                    data: {
-                      confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
-                      commit: "交渉開始",
-                      cancel: "取り消す"
-                    },
-                       title: "交渉開始の確認" %>
-                <% else %>
-                  <p>交渉中</p>
-                <% end %>
+                  <h3 class="margin-clear"><%= parent.book.title %></h3>
+                  <small><%= parent.book.author %></small>
+                  <div class="separator mt-10"></div>
+                  <% if @user.books.joins(:child).nil? %>
+                    <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
+                      data: {
+                        confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
+                        commit: "交渉開始",
+                        cancel: "取り消す"
+                      },
+                         title: "交渉開始の確認" %>
+                  <% elsif @user = parent.book.user %>
+                    <span class="label label-default">あなたが開始した取引です</span>
+                    <p><%= link_to parent_path(parent), class: "btn btn-gray btn-sm" do %>ほしいね！を見る<% end %></p>
+                  <% else %>
+                    <span class="label label-danger">あなたはすでに交渉中です</span>
+                  <% end %>
                 </div>
               </div>
             </div>

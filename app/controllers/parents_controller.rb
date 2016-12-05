@@ -24,7 +24,7 @@ class ParentsController < ApplicationController
   end
 
   def set_user
-    @user = User.find(1)
+    @user = current_user
   end
 
   def parent_params

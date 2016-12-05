@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+class BooksController < UsersController
   # before_action :authenticate_user!, only: [:show, :new, :cretate, :edit, :update, :destroy]
   before_action :set_book, only: [:edit, :update, :destroy]
   before_action :set_user
@@ -28,7 +28,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to user_books_url
+      redirect_to user_books_url(@user)
     else
       render :edit
     end
@@ -50,7 +50,6 @@ class BooksController < ApplicationController
   end
 
   def set_user
-    # @user = current_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 end

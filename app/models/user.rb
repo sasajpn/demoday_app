@@ -29,9 +29,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :books
-  has_many :addresses
-  
-  has_one :user_annimal
+  has_many :books, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
+  has_one :user_annimal
 end

@@ -26,7 +26,7 @@ class ChildrenController < ApplicationController
   end
 
   def set_user_books
-    @user = User.find(1)
+    @user = current_user
     @books = @user.books
   end
 

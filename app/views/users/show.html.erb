@@ -1,0 +1,49 @@
+<div class="page-wrapper">
+			<div class="banner default-translucent-bg" style="background-image:url('images/page-about-me-banner.jpg');background-position:50% 0;">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 text-center col-md-offset-2 pv-20">
+							<h1 class="title object-non-visible animated object-visible fadeIn" data-animation-effect="fadeIn" data-effect-delay="100">マイページ</h1>
+							<div class="separator object-non-visible mt-10 animated object-visible fadeIn" data-animation-effect="fadeIn" data-effect-delay="100"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section class="main-container">
+				<div class="container">
+					<div class="row">
+						<div class="main col-md-12">
+							<h1 class="page-title"><%= @user.username %></h1>
+							<div class="separator-2"></div>
+    							<div class="row">
+                    <div class="col-md-4 ">
+        							<div class="pv-30 ph-20 feature-box bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+        								<span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
+        								<h3>マイブック</h3>
+        								<div class="separator clearfix"></div>
+                        <%= link_to user_books_path(@user), class: "btn btn-default btn-sm margin-clear" do %>見る <i class="fa fa-arrow-right pl-10"></i><% end %>
+        							</div>
+        						</div>
+                    <div class="col-md-4 ">
+                      <div class="pv-30 ph-20 feature-box bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                        <span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
+                        <h3>取引一覧</h3>
+                        <div class="separator clearfix"></div>
+                        <a href="portfolio-item.html" class="btn btn-default btn-sm margin-clear">見る <i class="fa fa-arrow-right pl-10"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-md-4 ">
+                      <div class="pv-30 ph-20 feature-box bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                        <span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
+                        <h3>設定</h3>
+                        <div class="separator clearfix"></div>
+                        <%= link_to edit_user_path(@user), class: "btn btn-default btn-sm margin-clear" do %>設定 <i class="fa fa-arrow-right pl-10"></i><% end %>
+                      </div>
+                    </div>
+    							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>

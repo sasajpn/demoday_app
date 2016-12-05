@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users do
+    resources :addresses
     resources :books, shallow: true do
       resources :parents, only: [:create], shallow: true do
         resources :children, only: [:new, :create], shallow: true
