@@ -56,6 +56,9 @@
                          title: "交渉開始の確認" %>
                   <% else %>
                     <span class="label label-danger">あなたはすでに交渉中です</span>
+                    <% @child = parent.children.where(book_id: @user.books).first %>
+                    <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-danger btn-sm",
+                       method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
                   <% end %>
                 </div>
               </div>

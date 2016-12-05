@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :books, shallow: true do
       resources :parents, only: [:create], shallow: true do
-        resources :children, only: [:new, :create], shallow: true
+        resources :children, only: [:new, :create, :destroy], shallow: true
         resources :parent_children, only: [:create], shallow: true
       end
     end
