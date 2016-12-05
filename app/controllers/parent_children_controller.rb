@@ -1,7 +1,7 @@
 class ParentChildrenController < ApplicationController
-  before_action :set_parent_child, only: [:show]
+  before_action :set_parent_child, only: [:show, :update]
   before_action :become_deadline, only: [:create]
-  before_action :set_parent
+  before_action :set_parent, except: [:update]
 
   def show
     @parent_user = @parent_child.parent.book.user
@@ -13,10 +13,17 @@ class ParentChildrenController < ApplicationController
     redirect_to parent_url(@parent) if @parent_child.save
   end
 
+  def update
+    if @parent_child.update(parent_child_params)
+      redirect_to parent_child_messages_url(@parent_child)
+    end
+  end
+
+
   private
 
   def parent_child_params
-    params.require(:parent_child).permit(:parent_id, :child_id)
+    params.require(:parent_child).permit(:parent_id, :child_id, :confirm_parent, :confirm_child)
   end
 
   def set_parent_child

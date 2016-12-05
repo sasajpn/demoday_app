@@ -4,6 +4,11 @@
       <div class="row">
         <div class="main col-md-12">
           <h1 class="page-title">メッセージ</h1>
+          <% if current_user == @parent_user && @parent_child.confirm_parent == false %>
+            <%= render partial: 'parent_children/parent_confirm', locals: { parent_child: @parent_child } %>
+          <% elsif current_user == @child_user && @parent_child.confirm_child == false %>
+            <%= render partial: 'parent_children/child_confirm', locals: { parent_chils: @parent_child } %>
+          <% end %>
           <div class="separator-2"></div>
           <% if @messages.any? %>
             <div class="timeline clearfix">

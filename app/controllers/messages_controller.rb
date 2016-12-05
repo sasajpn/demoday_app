@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @parent_child.messages
+    @parent_user = @parent_child.parent.book.user
+    @child_user = @parent_child.child.book.user
   end
 
   def create
