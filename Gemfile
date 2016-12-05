@@ -20,6 +20,9 @@ gem 'bootstrap_form'
 
 gem 'data-confirm-modal'
 
+# Crontab
+gem 'whenever', require: false
+
 # Authenticate
 gem 'devise'
 
