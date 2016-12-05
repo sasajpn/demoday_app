@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   has_many :books, dependent: :destroy
   has_many :addresses, dependent: :destroy
+  has_many :messages
 
   has_one :user_annimal
 end

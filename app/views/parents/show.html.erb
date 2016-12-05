@@ -31,7 +31,8 @@
 											<% @parent_child = @parent.parent_child %>
 											<%= render partial: 'parent_children/form', locals: { parent: @parent, child: child } %>
 										<% else %>
-                      <p>現在、<%= @parent.parent_child.child.book.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しています。</p>
+                      <p><%= @parent.parent_child.child.book.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しました！</p>
+											<%= link_to parent_child_messages_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>メッセージはこちらから <i class="fa fa-send-o"></i><% end %>
                     <% end %>
   								</div>
   							</div>

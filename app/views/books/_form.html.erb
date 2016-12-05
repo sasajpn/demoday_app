@@ -1,4 +1,4 @@
-<%= bootstrap_form_for form_url do |f| %>
+<%= bootstrap_form_for book_form_url do |f| %>
   <%= f.text_field :title %>
   <%= f.text_field :author %>
   <%= f.select :status, Book.statuses_i18n.invert %>

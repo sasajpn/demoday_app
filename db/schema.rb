@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129050509) do
+ActiveRecord::Schema.define(version: 20161205095412) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",          limit: 4
@@ -80,14 +80,24 @@ ActiveRecord::Schema.define(version: 20161129050509) do
   add_index "likes", ["announce_id"], name: "index_likes_on_announce_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.integer  "parent_child_id", limit: 4
+    t.text     "content",         limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "messages", ["parent_child_id"], name: "index_messages_on_parent_child_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "parent_children", force: :cascade do |t|
     t.integer  "parent_id",      limit: 4
     t.integer  "child_id",       limit: 4
-    t.text     "message",        limit: 65535
-    t.boolean  "confirm_parent",               default: false
-    t.boolean  "confirm_child",                default: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.boolean  "confirm_parent",           default: false
+    t.boolean  "confirm_child",            default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_index "parent_children", ["child_id"], name: "index_parent_children_on_child_id", using: :btree
@@ -155,6 +165,8 @@ ActiveRecord::Schema.define(version: 20161129050509) do
   add_foreign_key "children", "parents"
   add_foreign_key "likes", "announces"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "parent_children"
+  add_foreign_key "messages", "users"
   add_foreign_key "parent_children", "children"
   add_foreign_key "parent_children", "parents"
   add_foreign_key "parents", "books"

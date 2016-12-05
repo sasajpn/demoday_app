@@ -1,0 +1,5 @@
+<%= bootstrap_form_for [ parent_child, message ] do |f| %>
+  <%= f.text_field :content %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit %>
+<% end %>
