@@ -9,4 +9,6 @@
 #
 
 class Animal < ActiveRecord::Base
+  has_one :user_animal
+
 end

@@ -29,6 +29,9 @@ gem 'devise'
 # Pagination
 gem 'kaminari'
 
+# Crawler
+gem 'mechanize'
+
 # Notification
 gem 'pusher'
 
