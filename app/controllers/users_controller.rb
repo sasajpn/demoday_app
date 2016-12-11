@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
   before_action :user_check
 
   def show
   end
 
   def edit
-    @address = @user.addresses.new
   end
 
   def update
@@ -27,10 +25,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
-  end
-
-  def set_user
-    @user = current_user
   end
 
   def user_check

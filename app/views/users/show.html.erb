@@ -1,49 +1,31 @@
 <div class="page-wrapper">
-			<div class="banner default-translucent-bg" style="background-image:url('images/page-about-me-banner.jpg');background-position:50% 0;">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-8 text-center col-md-offset-2 pv-20">
-							<h1 class="title object-non-visible animated object-visible fadeIn" data-animation-effect="fadeIn" data-effect-delay="100">マイページ</h1>
-							<div class="separator object-non-visible mt-10 animated object-visible fadeIn" data-animation-effect="fadeIn" data-effect-delay="100"></div>
-						</div>
-					</div>
-				</div>
+	<div class="vertical">
+		<ul class="mypage-nav nav nav-tabs" role="tablist">
+			<li class="active"><a href="#vtab1" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-book pr-10"></i> マイブック</a></li>
+			<li class=""><a href="#vtab2" role="tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-handshake-o pr-10"></i> 取引一覧</a></li>
+			<li class=""><a href="#vtab3" role="tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-cogs pr-10"></i> 設定</a></li>
+		</ul>
+		<div class="mypage-tab tab-content">
+			<div class="tab-pane fade active in" id="vtab1">
+				<h3 class="title">マイブック</h3>
+				<%= link_to new_user_book_path(current_user), class: "btn btn-default" do %>新しく本を登録する<% end %>
+				<%= render partial: 'books/index', locals: { books: current_user.books } %>
 			</div>
-			<section class="main-container">
-				<div class="container">
-					<div class="row">
-						<div class="main col-md-12">
-							<h1 class="page-title"><%= @user.username %></h1>
-							<div class="separator-2"></div>
-    							<div class="row">
-                    <div class="col-md-4 ">
-        							<div class="pv-30 ph-20 feature-box bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-        								<span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
-        								<h3>マイブック</h3>
-        								<div class="separator clearfix"></div>
-                        <%= link_to user_books_path(@user), class: "btn btn-default btn-sm margin-clear" do %>見る <i class="fa fa-arrow-right pl-10"></i><% end %>
-        							</div>
-        						</div>
-                    <div class="col-md-4 ">
-                      <div class="pv-30 ph-20 feature-box bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-                        <span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
-                        <h3>取引一覧</h3>
-                        <div class="separator clearfix"></div>
-                        <a href="portfolio-item.html" class="btn btn-default btn-sm margin-clear">見る <i class="fa fa-arrow-right pl-10"></i></a>
-                      </div>
-                    </div>
-                    <div class="col-md-4 ">
-                      <div class="pv-30 ph-20 feature-box bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-                        <span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
-                        <h3>設定</h3>
-                        <div class="separator clearfix"></div>
-                        <%= link_to edit_user_path(@user), class: "btn btn-default btn-sm margin-clear" do %>設定 <i class="fa fa-arrow-right pl-10"></i><% end %>
-                      </div>
-                    </div>
-    							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
+			<div class="tab-pane fade" id="vtab2">
+				<h3 class="title">取引一覧</h3>
+				<ul class="list-icons">
+					<li><i class="icon-check pr-10"></i> Lorem ipsum dolor sit amet maiores</li>
+					<li><i class="icon-check pr-10"></i> Consectetur adipisicing elit</li>
+					<li><i class="icon-check pr-10"></i> Aut earum numquam hic placeat</li>
+					<li><i class="icon-check pr-10"></i> Fugiat rem consequatur neque</li>
+				</ul>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere hic qui non placeat ad explicabo dignissimos amet iusto veniam!</p>
+				<p>Quo expedita tempore modi minima at adipisci saepe excepturi alias consequuntur sunt asperiores enim ut assumenda hic vitae, odio deleniti illo, veniam quas!</p>
+				<a href="page-services.html" class="btn btn-default">Read more</a>
+			</div>
+			<div class="tab-pane fade" id="vtab3">
+				<h3 class="title">設定</h3>
+					<%= render partial: 'edit' %>
+					<%= link_to "登録した住所を確認する", user_addresses_path(current_user), class: "btn btn-default" %>
+					<p>Quo expedita tempore modi minima at adipisci saepe excepturi alias consequuntur sunt asperiores enim ut assumenda hic vitae, odio deleniti illo, veniam quas!</p>
+			</div>

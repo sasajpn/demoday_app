@@ -1,0 +1,34 @@
+<div class="header-container">
+  <div class="header-top dark ">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3 col-sm-6 col-md-9">
+        </div>
+        <div class="col-xs-9 col-sm-6 col-md-3">
+          <div id="header-top-second" class="clearfix">
+            <div class="header-top-dropdown text-right">
+              <% if user_signed_in? %>
+                <div class="btn-group">
+                <%= link_to user_path(current_user), class:"btn btn-default btn-sm" do %><i class="fa fa-user pr-10"></i> マイページ<% end %>
+                </div>
+                <%= link_to destroy_user_session_path, method: :delete, class: "btn dropdown-toggle btn-default btn-sm" do %><i class="fa fa-unlock-alt pr-10"></i> ログアウト<% end %>
+              <% else %>
+                <div class="btn-group">
+                <%= link_to new_user_registration_path, class:"btn btn-default btn-sm" do %><i class="fa fa-user pr-10"></i> 新規登録<% end %>
+                </div>
+                <div class="btn-group dropdown">
+                <button type="button" class="btn dropdown-toggle btn-default btn-sm" data-toggle="dropdown"><i class="fa fa-lock pr-10"></i> ログイン</button>
+                  <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                    <li>
+                      <%= render partial: 'shared/header_login' %>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

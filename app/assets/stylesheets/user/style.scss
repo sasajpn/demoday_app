@@ -18,6 +18,24 @@ body {
   min-height: 100%;
 }
 
+.vertical {
+  margin: 0 !important;
+  height: 100%;
+}
+
+.mypage-tab {
+  min-width: 100%;
+  height: 1000px;
+}
+
+.mypage-nav {
+  width: 20%;
+}
+
+#new_parent {
+  margin: 0;
+}
+
 .book-list {
-  height: 400px;
+  margin-bottom: 5px !important;
 }
