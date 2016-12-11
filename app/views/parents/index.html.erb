@@ -53,13 +53,17 @@
                         マイブックの登録 <i class="fa fa-arrow-right"></i>
                       <% end %>
                     <% elsif parent.children.where(book_id: current_user.books).blank? %>
-                      <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
-                        data: {
-                          confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
-                          commit: "交渉開始",
-                          cancel: "取り消す"
-                        },
-                           title: "交渉開始の確認" %>
+                      <% if @books.blank? %>
+                      <% binding pry %>
+                        <span class="label label-success">交渉に出せる本がありません</span>
+                      <% end %>
+                        <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
+                          data: {
+                            confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
+                            commit: "交渉開始",
+                            cancel: "取り消す"
+                          },
+                             title: "交渉開始の確認" %>
                     <% else %>
                       <span class="label label-danger">あなたはすでに交渉中です</span>
                       <% @child = parent.children.where(book_id: current_user.books).first %>

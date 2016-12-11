@@ -23,7 +23,7 @@ class ParentChildrenController < ApplicationController
   private
 
   def parent_child_params
-    params.require(:parent_child).permit(:parent_id, :child_id, :confirm_parent, :confirm_child)
+    params.require(:parent_child).permit(:parent_id, :child_id, :parent_confirm, :child_confirm)
   end
 
   def set_parent_child

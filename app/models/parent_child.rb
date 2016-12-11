@@ -16,10 +16,18 @@ class ParentChild < ActiveRecord::Base
   belongs_to :child
 
   after_create :destroy_children_of_parent
+  after_update :book_exchanged
 
   def destroy_children_of_parent
     @children = parent.children.where.not(id: child)
     @children.destroy_all
+  end
+
+  def book_exchanged
+    if parent_confirm == true && child_confirm == true
+      parent.book.update(exchange: true)
+      child.book.update(exchange: true)
+    end
   end
 
 end

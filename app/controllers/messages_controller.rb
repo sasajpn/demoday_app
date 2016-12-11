@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_parent_child
+  before_action :parent_child_check
 
   def index
     @messages = @parent_child.messages
@@ -10,6 +11,9 @@ class MessagesController < ApplicationController
   def create
     @message = @parent_child.messages.build(message_params)
     if @message.save
+      Pusher.trigger('my-channel', 'my-event', {
+        message: 'hello world'
+        })
       redirect_to parent_child_messages_url(@parent_child)
     else
       render 'parent_child/index'
@@ -42,5 +46,14 @@ class MessagesController < ApplicationController
 
   def set_parent_child
     @parent_child = ParentChild.find(params[:parent_child_id])
+  end
+
+  def parent_child_check
+    @parent_child = ParentChild.find(params[:parent_child_id])
+    @parent_user = @parent_child.parent.book.user
+    @child_user = @parent_child.child.book.user
+    if @parent_user != current_user && @child_user != current_user
+      redirect_to user_url(current_user)
+    end
   end
 end

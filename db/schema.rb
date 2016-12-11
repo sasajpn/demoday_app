@@ -52,8 +52,9 @@ ActiveRecord::Schema.define(version: 20161205095412) do
     t.string   "title",      limit: 255
     t.string   "author",     limit: 255
     t.integer  "status",     limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "exchange",               default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_index "books", ["user_id", "title", "author"], name: "index_books_on_user_id_and_title_and_author", unique: true, using: :btree
@@ -94,8 +95,8 @@ ActiveRecord::Schema.define(version: 20161205095412) do
   create_table "parent_children", force: :cascade do |t|
     t.integer  "parent_id",      limit: 4
     t.integer  "child_id",       limit: 4
-    t.boolean  "confirm_parent",           default: false
-    t.boolean  "confirm_child",            default: false
+    t.boolean  "parent_confirm",           default: false
+    t.boolean  "child_confirm",            default: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
@@ -153,7 +154,6 @@ ActiveRecord::Schema.define(version: 20161205095412) do
     t.datetime "updated_at",                                      null: false
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

@@ -4,6 +4,7 @@ class ParentsController < ApplicationController
 
   def index
     @parents = Parent.where('deadline > ?', Time.now()).order("deadline DESC").page(params[:page])
+    @books = current_user.books - (current_user.books.joins(:parent) + current_user.books.joins(:child))
   end
 
   def show

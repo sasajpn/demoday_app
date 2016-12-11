@@ -8,7 +8,7 @@ class ChildrenController < ApplicationController
 
   def new
     @child = Child.new
-    @books = current_user.books
+    @books = current_user.books - (current_user.books.joins(:parent) + current_user.books.joins(:child))
   end
 
   def create
@@ -29,10 +29,6 @@ class ChildrenController < ApplicationController
 
   def set_child
     @child = Child.find(params[:id])
-  end
-
-  def set_book
-    @book = Book.find(params[:book_id])
   end
 
   def set_parent

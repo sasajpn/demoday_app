@@ -1,21 +1,19 @@
-class BooksController < UsersController
-  # before_action :authenticate_user!, only: [:show, :new, :cretate, :edit, :update, :destroy]
+class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :update, :destroy]
-  before_action :set_user
 
   def index
-    @books = @user.books.order(:id).page(params[:page])
+    @books = current_user.books.order(:id).page(params[:page])
   end
 
   def show
   end
 
   def new
-    @book = @user.books.build
+    @book = current_user.books.build
   end
 
   def create
-    @book = @user.books.build(book_params)
+    @book = current_user.books.build(book_params)
     if @book.save
       redirect_to user_books_url
     else
@@ -28,7 +26,7 @@ class BooksController < UsersController
 
   def update
     if @book.update(book_params)
-      redirect_to user_books_url(@user)
+      redirect_to user_books_url(current_user)
     else
       render :edit
     end

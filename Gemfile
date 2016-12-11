@@ -29,6 +29,9 @@ gem 'devise'
 # Pagination
 gem 'kaminari'
 
+# Notification
+gem 'pusher'
+
 # Setting
 gem 'config'
 gem 'dotenv-rails'
@@ -46,6 +49,7 @@ group :development, :test do
   gem 'annotate'
   gem 'awesome_print'
   gem 'factory_girl_rails'
+  gem 'seed-fu'
 end
 
 group :development do
