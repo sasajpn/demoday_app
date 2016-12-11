@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :books, dependent: :destroy
+  has_many :parents, through: :books
+  has_many :children, through: :books
   has_many :addresses, dependent: :destroy
   has_many :messages
 

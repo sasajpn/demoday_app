@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :update, :destroy]
 
   def index
-    @books = current_user.books.order(:id).page(params[:page])
+
   end
 
   def show

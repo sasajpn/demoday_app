@@ -13,12 +13,9 @@
 			</div>
 			<div class="tab-pane fade" id="vtab2">
 				<h3 class="title">取引一覧</h3>
-				<ul class="list-icons">
-					<li><i class="icon-check pr-10"></i> Lorem ipsum dolor sit amet maiores</li>
-					<li><i class="icon-check pr-10"></i> Consectetur adipisicing elit</li>
-					<li><i class="icon-check pr-10"></i> Aut earum numquam hic placeat</li>
-					<li><i class="icon-check pr-10"></i> Fugiat rem consequatur neque</li>
-				</ul>
+				<div class="separator mt-10"></div>
+				<%= render partial: 'books/parent_book' %>
+				<%= render partial: 'books/child_book' %>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere hic qui non placeat ad explicabo dignissimos amet iusto veniam!</p>
 				<p>Quo expedita tempore modi minima at adipisci saepe excepturi alias consequuntur sunt asperiores enim ut assumenda hic vitae, odio deleniti illo, veniam quas!</p>
 				<a href="page-services.html" class="btn btn-default">Read more</a>
@@ -29,3 +26,6 @@
 					<%= link_to "登録した住所を確認する", user_addresses_path(current_user), class: "btn btn-default" %>
 					<p>Quo expedita tempore modi minima at adipisci saepe excepturi alias consequuntur sunt asperiores enim ut assumenda hic vitae, odio deleniti illo, veniam quas!</p>
 			</div>
+		</div>
+	</div>
+</div>

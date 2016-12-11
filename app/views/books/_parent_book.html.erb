@@ -1,0 +1,24 @@
+<a class="btn btn-primary btn-animated collapsed" data-toggle="collapse" href="#collapseContent1" aria-expanded="false" aria-controls="collapseContent">あなたが開始した取引 <i class="fa fa-plus"></i></a>
+<div class="collapse" id="collapseContent1" aria-expanded="false" style="height: 0px;">
+  <div class="row grid-space-10">
+    <% current_user.parents.each do |parent| %>
+      <% if parent.book.exchange == false %>
+        <div class="col-sm-6 col-md-3">
+          <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+            <div class="overlay-container overlay-visible">
+            <%= image_tag('blog-1.jpg') %>
+            </div>
+            <div class="body">
+              <h3 class="margin-clear"><%= parent.book.title %></h3>
+              <small><%= parent.book.author %></small>
+              <div class="separator mt-10"></div>
+              <% if parent.children.present? %>
+                <%= link_to parent_path(parent), class:"btn btn-gray" do %>ほしいね！を見る <i class="fa fa-folder-open pl-10"></i><% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
