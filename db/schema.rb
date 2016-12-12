@@ -14,18 +14,16 @@
 ActiveRecord::Schema.define(version: 20161129050509) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4
-    t.string   "given_name",       limit: 255
-    t.string   "given_name_kana",  limit: 255
-    t.string   "family_name",      limit: 255
-    t.string   "family_name_kana", limit: 255
-    t.integer  "postal_code",      limit: 4
-    t.string   "prefecture",       limit: 255
-    t.string   "municipality",     limit: 255
-    t.string   "street",           limit: 255
-    t.string   "building",         limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "user_id",      limit: 4
+    t.string   "given_name",   limit: 255
+    t.string   "family_name",  limit: 255
+    t.integer  "postal_code",  limit: 4
+    t.string   "prefecture",   limit: 255
+    t.string   "municipality", limit: 255
+    t.string   "street",       limit: 255
+    t.string   "building",     limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
