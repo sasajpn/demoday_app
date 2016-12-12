@@ -24,7 +24,7 @@ class ParentChild < ActiveRecord::Base
   end
 
   def book_exchanged
-    if parent_confirm == true && child_confirm == true
+    if parent_done == true && child_done == true
       parent.book.update(exchange: true)
       child.book.update(exchange: true)
     end
