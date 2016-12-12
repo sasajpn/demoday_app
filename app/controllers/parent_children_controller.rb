@@ -1,9 +1,11 @@
 class ParentChildrenController < ApplicationController
   before_action :set_parent_child, only: [:show, :update]
   before_action :become_deadline, only: [:create]
-  before_action :set_parent, except: [:update]
+  before_action :set_parent, except: [:update, :show]
 
   def show
+    @parent = @parent_child.parent
+    @child = @parent_child.child
     @parent_user = @parent_child.parent.book.user
     @child_user = @parent_child.child.book.user
   end

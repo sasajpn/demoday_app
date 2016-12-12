@@ -1,0 +1,99 @@
+<div class="page-wrapper">
+  <section class="main-container">
+    <div class="container">
+      <div class="row">
+        <div class="main col-md-12">
+          <div class="process">
+						<ul class="nav nav-pills" role="tablist">
+							<li class="active"><a href="#pill-pr-1" role="tab" data-toggle="tab" title="Step 1">Step 1：取引成立確認</a></li>
+							<li><a href="#pill-pr-2" role="tab" data-toggle="tab" title="Step 2">Step 2：住所連絡</a></li>
+              <li><a href="#pill-pr-3" role="tab" data-toggle="tab" title="Step 3">Step 3：配送連絡</a></li>
+              <li><a href="#pill-pr-4" role="tab" data-toggle="tab" title="Step 4">Step 4：受け取り連絡</a></li>
+						</ul>
+						<div class="tab-content clear-style">
+							<div class="tab-pane active" id="pill-pr-1">
+                <% if @parent.status == 0 && @child.status == 0 %>
+                  <p>取引が成立しました！確認のため、以下のボタンを押してください。</p>
+                  <p>なお、両者が以下のボタンを押すことで取引が次のStepに進みます。</p>
+                <% end %>
+                <% if current_user == @parent.user && @parent.status == 0 %>
+                  <%= render partial: 'confirm', locals: { object: @parent } %>
+                <% elsif current_user == @child.user && @parent.status == 0 %>
+                  <%= render partial: 'confirm', locals: { object: @child } %>
+                <% elsif @parent.status > 0 && @child.status > 0 %>
+                  <p>両者の確認が取れました！</p>
+                  <p>次のStepに進んでください！</p>
+                <% else %>
+                  <p>相手方が確認ボタンを押すまでしばらくお待ちください。</p>
+                <% end %>
+							</div>
+							<div class="tab-pane" id="pill-pr-2">
+                <% if @parent.status == 1 && @child.status == 1 %>
+                  <p>相手方にあなたの住所を通知します。</p>
+                  <p>以下からあなたの通知する住所を選択してください。</p>
+                <% end %>
+                <% if current_user == @parent.user && @parent.status == 1 %>
+                  <%= render partial: 'notice', locals: { object: @parent } %>
+                <% elsif current_user == @child.user && @parent.status == 1 %>
+                  <%= render partial: 'notice', locals: { object: @child } %>
+                <% elsif @parent.status > 1 && @child.status > 1 %>
+                  <p>お互いの住所を通知し合いました。</p>
+                  <p>次のStepに進んでください！</p>
+                <% else %>
+                  <p>相手方が住所を通知するまでしばらくお待ちください。</p>
+                <% end %>
+							</div>
+              <div class="tab-pane" id="pill-pr-3">
+                <% if @parent.status == 1 && @child.status == 1 %>
+                  <p>相手方に本を配送したことを知らせます。</p>
+                  <p>あなたが本を配送した場合、以下のボタンを押してください。</p>
+                <% end %>
+                <% if current_user == @parent.user && @parent.status == 2 %>
+                  <%= render partial: 'send', locals: { object: @parent } %>
+                <% elsif current_user == @child.user && @parent.status == 2 %>
+                  <%= render partial: 'send', locals: { object: @child } %>
+                <% end %>
+                <% if current_user == @parent.user %>
+                  <% if @parent.status > 2 && @child.status == 2 %>
+                    <p>相手方はまだ本の配送をしておりません。もうしばらくお待ちください。</p>
+                  <% elsif @parent.status == 2 && @child.status > 2 %>
+                    <p>相手方が本を配送しました。</p>
+                    <p>あなたも本の配送を行ってください。</p>
+                  <% end %>
+                <% end %>
+                <% if current_user == @child.user %>
+                  <% if @child.status > 2 && @parent.status == 2 %>
+                    <p>相手方はまだ本の配送をしておりません。もうしばらくお待ちください。</p>
+                  <% elsif @child.status == 2 && @parent.status > 2 %>
+                    <p>相手方が本を配送しました。</p>
+                    <p>あなたも本の配送を行ってください。</p>
+                  <% end %>
+                <% end %>
+                <% if @parent.status > 2 && @child.status > 2 %>
+                  <p>お互いが本を配送し合いました。</p>
+                  <p>本を受け取った場合、次のStepに進んでください！</p>
+                <% end %>
+							</div>
+              <div class="tab-pane" id="pill-pr-4">
+                <% if @parent.status == 3 && @child.status == 3 %>
+                  <p>お互いが本の配送を終えています。</p>
+                  <p>本が到着した場合、以下のボタンを押してください。</p>
+              <% end %>
+                <% if current_user == @parent.user && @parent.status == 3 %>
+                  <%= render partial: 'recieve', locals: { object: @parent } %>
+                <% elsif current_user == @child.user && @parent.status == 3 %>
+                  <%= render partial: 'recieve', locals: { object: @child } %>
+                <% elsif @parent.status > 3 && @child.status > 3 %>
+                  <p>お互いが本を受け取りました。</p>
+                  <p>これで今回の取引は終了です！</p>
+                <% else %>
+                  <p>相手方が本を受け取るまで、この取引は終了しません。</p>
+                <% end %>
+              </div>
+						</div>
+					</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

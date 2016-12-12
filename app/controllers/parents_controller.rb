@@ -1,5 +1,6 @@
 class ParentsController < ApplicationController
   before_action :set_book, only: [:create]
+  before_action :set_parent, only: [:show, :update]
   before_action :already_negotiate, only: [:create]
 
   def index
@@ -8,7 +9,6 @@ class ParentsController < ApplicationController
   end
 
   def show
-    @parent = Parent.find(params[:id])
     @children = Child.where(parent_id: @parent.id)
   end
 
@@ -17,14 +17,24 @@ class ParentsController < ApplicationController
     redirect_to user_url(current_user) if @parent.save
   end
 
+  def update
+    if @parent.update(parent_params)
+      redirect_to parent_child_url(@parent.parent_child)
+    end
+  end
+
   private
 
   def set_book
     @book = Book.find(params[:book_id])
   end
 
+  def set_parent
+    @parent = Parent.find(params[:id])
+  end
+
   def parent_params
-    params.require(:parent).permit(:book_id, :deadline)
+    params.require(:parent).permit(:book_id, :deadline, :status)
   end
 
   def already_negotiate

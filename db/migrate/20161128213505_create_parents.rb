@@ -3,6 +3,7 @@ class CreateParents < ActiveRecord::Migration
     create_table :parents do |t|
       t.references :book, index: true, foreign_key: true
       t.datetime :deadline
+      t.integer :status, default: 0, null: false, limit:1
 
       t.timestamps null: false
     end

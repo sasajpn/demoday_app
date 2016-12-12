@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
     if @book.save
-      redirect_to user_books_url
+      redirect_to user_url(current_user)
     else
       render :new
     end
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to user_books_url(current_user)
+      redirect_to user_url(current_user)
     else
       render :edit
     end
@@ -27,7 +27,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to user_books_url
+    redirect_to user_url(current_user)
   end
 
   private

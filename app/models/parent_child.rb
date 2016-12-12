@@ -10,7 +10,7 @@
 #
 
 class ParentChild < ActiveRecord::Base
-  has_many :messages
+  has_one :message
 
   belongs_to :parent
   belongs_to :child

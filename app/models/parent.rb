@@ -15,6 +15,6 @@ class Parent < ActiveRecord::Base
   has_one :parent_child
 
   belongs_to :book
-  belongs_to :user
+  has_one :user, through: :book
 
 end

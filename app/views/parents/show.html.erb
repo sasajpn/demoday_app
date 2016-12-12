@@ -32,7 +32,7 @@
 											<%= render partial: 'parent_children/form', locals: { parent: @parent, child: child } %>
 										<% else %>
                       <p><%= @parent.parent_child.child.book.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しました！</p>
-											<%= link_to parent_child_messages_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>メッセージはこちらから <i class="fa fa-send-o"></i><% end %>
+											<%= link_to parent_child_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>メッセージはこちらから <i class="fa fa-send-o"></i><% end %>
                     <% end %>
   								</div>
   							</div>
