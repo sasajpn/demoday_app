@@ -34,7 +34,7 @@ class ParentsController < ApplicationController
   end
 
   def parent_params
-    params.require(:parent).permit(:book_id, :deadline, :status)
+    params.require(:parent).permit(:book_id, :deadline, :status, :address_id)
   end
 
   def already_negotiate

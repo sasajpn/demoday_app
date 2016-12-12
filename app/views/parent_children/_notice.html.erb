@@ -1,4 +1,8 @@
 <%= bootstrap_form_for(object) do |f| %>
+  <%= f.collection_radio_buttons(:address_id, object.user.addresses, :id, :display_address) %>
   <%= f.hidden_field :status, value: 2 %>
-  <%= f.submit "住所を通知する" %>
+  <%= f.submit "住所を通知する", data: { confrim: "選択いただいた住所を相手側に通知します。",
+      verify: current_user.username,
+      verify_text: "この操作は取り消せません。住所に間違い等なければ、以下の空白にあなたのユーザネームを入力してください。"
+      }, title: "住所通知の確認" %>
 <% end %>

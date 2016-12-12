@@ -4,10 +4,6 @@ class ParentChildrenController < ApplicationController
   before_action :set_parent, except: [:update, :show]
 
   def show
-    @parent = @parent_child.parent
-    @child = @parent_child.child
-    @parent_user = @parent_child.parent.book.user
-    @child_user = @parent_child.child.book.user
   end
 
   def create

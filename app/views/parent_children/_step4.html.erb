@@ -1,0 +1,9 @@
+<% if current_user == parent.user && parent.status > 3 %>
+  <p>相手方が本を受け取るまでしばらくお待ちください。</p>
+<% elsif current_user == child.user && child.status > 3 %>
+  <p>相手方が本を受け取るまでしばらくお待ちください。</p>
+<% else %>
+  <p>相手方が配送した本が到着した場合、以下のボタンを押してください。</p>
+<% end %>
+<%= render partial: 'recieve', locals: { object: parent } if current_user == parent.user && parent.status == 3 %>
+<%= render partial: 'recieve', locals: { object: child } if current_user == child.user && child.status == 3 %>

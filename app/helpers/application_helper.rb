@@ -26,4 +26,17 @@ module ApplicationHelper
       [ parent_child, message ]
     end
   end
+
+  def step_navs(parent, child)
+    if parent.status == 0 || child.status == 0
+      render partial: "step1_navs"
+    elsif parent.status == 1 || child.status == 1
+      render partial: "step2_navs"
+    elsif parent.status == 2 || child.status == 2
+      render partial: "step3_navs"
+    elsif parent.status == 3 || child.status == 3
+      render partial: "step4_navs"
+    end
+  end
+
 end

@@ -1,0 +1,14 @@
+<% if parent.status > 0 && child.status > 0 %>
+  <p>お互いが確認ボタンを押しました！</p>
+  <p>次のStepに進んでください！</p>
+<% elsif current_user == parent.user && parent.status > 0 %>
+  <p>相手方が確認ボタンを押すまでしばらくお待ちください。</p>
+<% elsif current_user == child.user && child.status > 0 %>
+  <p>相手方が確認ボタンを押すまでしばらくお待ちください。</p>
+<% else %>
+  <p>取引が成立しました！</p>
+  <p>確認のため、以下のボタンを押してください。</p>
+  <p>なお、お互いが確認ボタンを押すことで取引が次のStepに進みます。</p>
+<% end %>
+<%= render partial: 'confirm', locals: { object: parent } if current_user == parent.user && parent.status == 0 %>
+<%= render partial: 'confirm', locals: { object: child } if current_user == child.user && child.status == 0 %>

@@ -1,10 +1,9 @@
 class ChildrenController < ApplicationController
-  before_action :set_child, only: [:destroy]
+  before_action :set_child, only: [:update, :destroy]
   before_action :no_book, only: [:create]
   before_action :become_deadline, only: [:new, :create]
   before_action :already_done, only: [:new, :create]
   before_action :already_negotiate, only: [:create]
-  before_action :set_parent, except: [:destroy]
 
   def new
     @child = Child.new
@@ -16,6 +15,10 @@ class ChildrenController < ApplicationController
     redirect_to parents_url if @child.save
   end
 
+  def update
+    redirect_to parent_child_url(@child.parent_child) if @child.update(child_params)
+  end
+
   def destroy
     @child.destroy
     redirect_to parents_url
@@ -24,15 +27,11 @@ class ChildrenController < ApplicationController
   private
 
   def child_params
-    params.require(:child).permit(:book_id, :parent_id, :recommend)
+    params.require(:child).permit(:book_id, :parent_id, :recommend, :status, :address_id)
   end
 
   def set_child
     @child = Child.find(params[:id])
-  end
-
-  def set_parent
-    @parent = Parent.find(params[:parent_id])
   end
 
   def no_book

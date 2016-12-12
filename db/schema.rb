@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161129050509) do
     t.integer  "parent_id",  limit: 4
     t.text     "recommend",  limit: 65535
     t.integer  "status",     limit: 1,     default: 0, null: false
+    t.integer  "address_id", limit: 4
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 20161129050509) do
     t.integer  "book_id",    limit: 4
     t.datetime "deadline"
     t.integer  "status",     limit: 1, default: 0, null: false
+    t.integer  "address_id", limit: 4
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
