@@ -84,21 +84,21 @@ ActiveRecord::Schema.define(version: 20161205095412) do
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
     t.integer  "parent_child_id", limit: 4
-    t.text     "content",         limit: 65535
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "status",          limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "messages", ["parent_child_id"], name: "index_messages_on_parent_child_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "parent_children", force: :cascade do |t|
-    t.integer  "parent_id",      limit: 4
-    t.integer  "child_id",       limit: 4
-    t.boolean  "parent_confirm",           default: false
-    t.boolean  "child_confirm",            default: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.integer  "parent_id",   limit: 4
+    t.integer  "child_id",    limit: 4
+    t.boolean  "parent_done",           default: false
+    t.boolean  "child_done",            default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "parent_children", ["child_id"], name: "index_parent_children_on_child_id", using: :btree

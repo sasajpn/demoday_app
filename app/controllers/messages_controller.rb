@@ -11,9 +11,6 @@ class MessagesController < ApplicationController
   def create
     @message = @parent_child.messages.build(message_params)
     if @message.save
-      Pusher.trigger('my-channel', 'my-event', {
-        message: 'hello world'
-        })
       redirect_to parent_child_messages_url(@parent_child)
     else
       render 'parent_child/index'

@@ -4,10 +4,10 @@
       <div class="row">
         <div class="main col-md-12">
           <h1 class="page-title">メッセージ</h1>
-          <% if current_user == @parent_user && @parent_child.parent_confirm == false %>
-            <%= render partial: 'parent_children/parent_confirm', locals: { parent_child: @parent_child } %>
-          <% elsif current_user == @child_user && @parent_child.child_confirm == false %>
-            <%= render partial: 'parent_children/child_confirm', locals: { parent_child: @parent_child } %>
+          <% if current_user == @parent_user && @parent_child.parent_done == false %>
+          <% if @parent_child.messsages.parent_confirm == false %>
+            <%= render partial: 'messages/confirm' %>
+          <% elsif current_user == @child_user && @parent_child.child_done == false %>
           <% end %>
           <div class="separator-2"></div>
           <% if @messages.any? %>
@@ -31,7 +31,7 @@
                       </div>
                     </header>
                     <div class="blogpost-content">
-                      <p><%= message.content %></p>
+                      <p></p>
                     </div>
                   </article>
                   </div>
