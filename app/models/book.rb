@@ -7,6 +7,7 @@
 #  title      :string(255)
 #  author     :string(255)
 #  status     :integer
+#  exchange   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -4,7 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  book_id    :integer
-#  deadline   :date
+#  deadline   :datetime
+#  status     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

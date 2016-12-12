@@ -6,6 +6,7 @@
 #  book_id    :integer
 #  parent_id  :integer
 #  recommend  :text(65535)
+#  status     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

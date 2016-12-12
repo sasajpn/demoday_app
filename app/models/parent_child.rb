@@ -2,11 +2,13 @@
 #
 # Table name: parent_children
 #
-#  id         :integer          not null, primary key
-#  parent_id  :integer
-#  child_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  parent_id   :integer
+#  child_id    :integer
+#  parent_done :boolean          default(FALSE)
+#  child_done  :boolean          default(FALSE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 class ParentChild < ActiveRecord::Base
