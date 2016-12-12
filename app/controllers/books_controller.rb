@@ -1,13 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :update, :destroy]
 
-  def index
-
-  end
-
-  def show
-  end
-
   def new
     @book = current_user.books.build
   end

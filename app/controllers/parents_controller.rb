@@ -14,7 +14,7 @@ class ParentsController < ApplicationController
 
   def create
     @parent = Parent.new(parent_params)
-    redirect_to user_books_url(@book.user) if @parent.save
+    redirect_to user_url(current_user) if @parent.save
   end
 
   private
@@ -30,7 +30,7 @@ class ParentsController < ApplicationController
   def already_negotiate
     @book = Book.find(params[:book_id])
     if @book.already_negotiate?
-      redirect_to user_books_url(@book.user), notice: "すでに取引中です。"
+      redirect_to user_url(current_user), notice: "すでに取引中です。"
     end
   end
 end
