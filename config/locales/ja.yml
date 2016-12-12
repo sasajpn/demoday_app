@@ -7,6 +7,12 @@ ja:
         good: 良い
         bad: 悪い
         very_bad: とても悪い
+    performance:
+      evaluate:
+        very_good: とても良い
+        good: 良い
+        bad: 悪い
+        very_bad: とても悪い
   activerecord:
     errors:
       messages:

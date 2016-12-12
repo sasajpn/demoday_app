@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :books, shallow: true do
       resources :parents, only: [:create, :update], shallow: true do
         resources :children, only: [:new, :create, :update, :destroy], shallow: true
-        resources :parent_children, only: [:create, :update], shallow: true
+        resources :parent_children, only: [:create, :update], shallow: true do
+          resources :performances, only: [:new, :create]
+        end
       end
     end
   end

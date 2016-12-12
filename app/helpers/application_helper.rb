@@ -27,6 +27,14 @@ module ApplicationHelper
     end
   end
 
+  def partner(parent_child)
+    if parent_child.parent.user == current_user
+      parent_child.child.user.id
+    else
+      parent_child.parent.user.id
+    end
+  end
+
   def step_navs(parent, child)
     if parent.status == 0 || child.status == 0
       render partial: "step1_navs"

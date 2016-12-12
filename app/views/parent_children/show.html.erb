@@ -45,8 +45,7 @@
                 <div class="tab-pane active" id="pill-pr-1">
                   <p>お互いが本を受け取りました！</p>
                   <p>これで今回の取引は終了です。</p>
-                  <p>ご利用ありがとうございました。</p>
-                  <p>引き続き弊サービスをよろしくお願いいたします！</p>
+                  <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_performance_path(@parent_child) %>
                 </div>
               </div>
             <% end %>

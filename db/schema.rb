@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20161129050509) do
 
   create_table "performances", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
+    t.integer  "evaluator",  limit: 4
     t.integer  "evaluate",   limit: 4
     t.text     "comment",    limit: 65535
     t.datetime "created_at",               null: false
