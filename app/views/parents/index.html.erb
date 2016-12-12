@@ -54,7 +54,6 @@
                       <% end %>
                     <% elsif parent.children.where(book_id: current_user.books).blank? %>
                       <% if @books.blank? %>
-                      <% binding pry %>
                         <span class="label label-success">交渉に出せる本がありません</span>
                       <% end %>
                         <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",

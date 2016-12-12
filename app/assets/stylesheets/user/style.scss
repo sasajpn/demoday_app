@@ -24,12 +24,15 @@ body {
 }
 
 .mypage-tab {
-  min-width: 100%;
   height: 1000px;
+
+  .tab-pane {
+    width: 1018px;
+  }
 }
 
 .mypage-nav {
-  width: 20%;
+  width: 100%;
 }
 
 #new_parent {

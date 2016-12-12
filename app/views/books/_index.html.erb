@@ -1,34 +1,38 @@
 <div class="row grid-space-10">
-  <% books.each do |book| %>
-    <% if book.exchange == false %>
-      <div class="col-sm-6 col-md-3">
-        <ul class="book-list social-links circle small clearfix hidden-xs">
-          <li class="flickr"><%= link_to edit_book_path(book) do %><i class="fa fa-edit"></i><% end %></li>
-          <li class="googleplus"><%= link_to book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } do %><i class="fa fa-trash-o"></i><% end %></li>
-        </ul>
-        <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
-          <div class="overlay-container overlay-visible">
-          <%= image_tag('blog-1.jpg') %>
-          </div>
-          <div class="body">
-            <h3 class="margin-clear"><%= book.title %></h3>
-            <small><%= book.author %></small>
-            <div class="separator mt-10"></div>
-            <% if book.parent.nil? && book.child.nil? %>
-              <% @parent = Parent.new %>
-              <%= render partial: 'parents/form', locals: { book: book } %>
-            <% end %>
-            <% if book.parent.present? %>
-              <%= link_to parent_path(book.parent), class:"btn btn-gray" do %>あなたが取引主です <i class="fa fa-folder-open pl-10"></i><% end %>
-            <% elsif book.child.present? %>
-              <span class="label label-default"><%= book.child.parent.book.user.username %>さんの<%= book.child.parent.book.title %>と交渉中です</span>
-              <br />
-              <%= link_to "ほしいね！を取り消す", child_path(book.child), class: "btn btn-danger btn-sm",
-                 method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
-            <% end %>
+  <% if books.any? %>
+    <% books.each do |book| %>
+      <% if book.exchange == false %>
+        <div class="col-sm-6 col-md-3">
+          <ul class="book-list social-links circle small clearfix hidden-xs">
+            <li class="flickr"><%= link_to edit_book_path(book) do %><i class="fa fa-edit"></i><% end %></li>
+            <li class="googleplus"><%= link_to book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } do %><i class="fa fa-trash-o"></i><% end %></li>
+          </ul>
+          <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+            <div class="overlay-container overlay-visible">
+            <%= image_tag('blog-1.jpg') %>
+            </div>
+            <div class="body">
+              <h3 class="margin-clear"><%= book.title %></h3>
+              <small><%= book.author %></small>
+              <div class="separator mt-10"></div>
+              <% if book.parent.nil? && book.child.nil? %>
+                <% @parent = Parent.new %>
+                <%= render partial: 'parents/form', locals: { book: book } %>
+              <% end %>
+              <% if book.parent.present? %>
+                <%= link_to parent_path(book.parent), class:"btn btn-gray" do %>あなたが取引主です <i class="fa fa-folder-open pl-10"></i><% end %>
+              <% elsif book.child.present? %>
+                <span class="label label-default"><%= book.child.parent.book.user.username %>さんの<%= book.child.parent.book.title %>と交渉中です</span>
+                <br />
+                <%= link_to "ほしいね！を取り消す", child_path(book.child), class: "btn btn-danger btn-sm",
+                   method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
+  <% else %>
+    <p>まだ本を登録していません。</p>
   <% end %>
 </div>

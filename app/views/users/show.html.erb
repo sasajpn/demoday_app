@@ -2,7 +2,7 @@
 	<div class="vertical">
 		<ul class="mypage-nav nav nav-tabs" role="tablist">
 			<li class="active"><a href="#vtab1" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-book pr-10"></i> マイブック</a></li>
-			<li class=""><a href="#vtab2" role="tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-handshake-o pr-10"></i> 取引一覧</a></li>
+			<li class=""><a href="#vtab2" role="tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-handshake-o pr-10"></i> あなたの取引一覧</a></li>
 			<li class=""><a href="#vtab3" role="tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-cogs pr-10"></i> 設定</a></li>
 		</ul>
 		<div class="mypage-tab tab-content">
@@ -12,13 +12,10 @@
 				<%= render partial: 'books/index', locals: { books: current_user.books } %>
 			</div>
 			<div class="tab-pane fade" id="vtab2">
-				<h3 class="title">取引一覧</h3>
+				<h3 class="title">あなたの取引一覧</h3>
 				<div class="separator mt-10"></div>
 				<%= render partial: 'books/parent_book' %>
 				<%= render partial: 'books/child_book' %>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere hic qui non placeat ad explicabo dignissimos amet iusto veniam!</p>
-				<p>Quo expedita tempore modi minima at adipisci saepe excepturi alias consequuntur sunt asperiores enim ut assumenda hic vitae, odio deleniti illo, veniam quas!</p>
-				<a href="page-services.html" class="btn btn-default">Read more</a>
 			</div>
 			<div class="tab-pane fade" id="vtab3">
 				<h3 class="title">設定</h3>

@@ -60,4 +60,12 @@ class ChildrenController < ApplicationController
       redirect_to parents_url, notice: "その本はすでに取引に出しています"
     end
   end
+
+  def your_book
+    @parent = Parent.find(params[:id])
+    if @parent.user == current_user
+      redirect_to parents_url, notice: "その取引はあなたが開始したものです"
+    end
+  end
+
 end
