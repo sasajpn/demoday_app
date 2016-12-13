@@ -49,5 +49,12 @@ body {
 }
 
 .user-info {
-  float: left;
+  img {
+    background-color: #FFFFFF;
+    display: inline-block;
+  }
+  span {
+    font-weight: bold;
+    padding-left: 5px;
+  }
 }

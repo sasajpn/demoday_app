@@ -27,20 +27,39 @@
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
 			<div class="panel-body">
-        <% @address = current_user.addresses.build %>
-        <%= render partial: 'addresses/form', locals: { user: current_user, address: @address } %>
+				<% @address = current_user.addresses.build %>
+				<%= render partial: 'addresses/form', locals: { user: current_user, address: @address } %>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">
+					<i class="fa fa-address-card pr-10"></i>パズワード変更
+				</a>
+			</h4>
+		</div>
+		<div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<%= bootstrap_form_for(current_user) do |f| %>
+					<%= f.password_field :password, autocomplete: "off" %>
+					<%= f.password_field :password_confirmation, autocomplete: "off" %>
+					<%= f.submit %>
+				<% end %>
 			</div>
 		</div>
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed" aria-expanded="false">
 					<i class="fa fa-close pr-10"></i>退会
 				</a>
 			</h4>
 		</div>
-		<div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
+		<div id="collapseFour" class="panel-collapse collapse" aria-expanded="false">
 			<div class="panel-body">
         <%= link_to user_path(current_user), method: :delete, class: "btn btn-danger", data: { confirm: "これまでの実績や登録内容は削除されますが、本当に退会しますか？" ,
           verify: current_user.username,

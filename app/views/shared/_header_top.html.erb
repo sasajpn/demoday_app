@@ -3,9 +3,12 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-3 col-sm-6 col-md-3">
+          <% if user_signed_in? %>
           <div class="user-info">
-            <p><%= current_user.animal_of_user %><%= current_user.username %></p>
-          </div>
+              <%= image_tag(user_icon(current_user.animal_of_user), size: "40x40", align: "middle") %>
+              <span><%= current_user.username %> (<%= current_user.animal_of_user %>)</span>
+            </div>
+          <% end %>
         </div>
         <div class="col-xs-9 col-sm-6 col-md-9">
           <div id="header-top-second" class="clearfix">
