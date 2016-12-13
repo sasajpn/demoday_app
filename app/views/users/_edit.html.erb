@@ -27,8 +27,7 @@
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
 			<div class="panel-body">
-				<% @address = current_user.addresses.build %>
-				<%= render partial: 'addresses/form', locals: { user: current_user, address: @address } %>
+				<%= link_to "住所を登録する", new_user_address_path(current_user), class: "btn btn-default" %>
 			</div>
 		</div>
 	</div>
@@ -37,7 +36,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">
-					<i class="fa fa-address-card pr-10"></i>パズワード変更
+					<i class="fa fa-address-card pr-10"></i>パスワード変更
 				</a>
 			</h4>
 		</div>

@@ -27,8 +27,9 @@
 			<div class="tab-pane fade" id="vtab3">
 				<h3 class="title">設定</h3>
 					<%= render partial: 'edit' %>
-					<%= link_to "登録した住所を確認する", user_addresses_path(current_user), class: "btn btn-default" %>
-					<p>Quo expedita tempore modi minima at adipisci saepe excepturi alias consequuntur sunt asperiores enim ut assumenda hic vitae, odio deleniti illo, veniam quas!</p>
+					<% if current_user.addresses.any? %>
+						<%= render partial: 'addresses/index' %>
+					<% end %>
 			</div>
 		</div>
 	</div>

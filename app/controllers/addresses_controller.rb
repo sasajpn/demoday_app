@@ -1,12 +1,12 @@
 class AddressesController < ApplicationController
-  before_action :set_address, except: [:index, :create]
+  before_action :set_address, except: [:index, :new, :create]
 
   def index
     @addresses = current_user.addresses
   end
 
   def new
-    @address = current_user.adresses.build
+    @address = current_user.addresses.build
   end
 
   def create
