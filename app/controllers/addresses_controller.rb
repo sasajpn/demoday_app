@@ -14,7 +14,7 @@ class AddressesController < ApplicationController
     if @address.save
       redirect_to user_url(current_user)
     else
-      render 'user/show'
+      render :new
     end
   end
 
