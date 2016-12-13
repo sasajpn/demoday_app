@@ -6,6 +6,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Database/Model
 gem 'mysql2', '~> 0.3.21'
+gem 'active_hash'
 gem 'enum_help'
 
 # Views/Presentation

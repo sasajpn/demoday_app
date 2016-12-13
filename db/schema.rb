@@ -28,14 +28,6 @@ ActiveRecord::Schema.define(version: 20161129050509) do
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
-  create_table "animals", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "animals", ["name"], name: "index_animals_on_name", unique: true, using: :btree
-
   create_table "announces", force: :cascade do |t|
     t.integer  "book_id",    limit: 4
     t.date     "start_dat"
@@ -122,7 +114,6 @@ ActiveRecord::Schema.define(version: 20161129050509) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "user_animals", ["animal_id"], name: "index_user_animals_on_animal_id", using: :btree
   add_index "user_animals", ["user_id"], name: "index_user_animals_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -161,6 +152,5 @@ ActiveRecord::Schema.define(version: 20161129050509) do
   add_foreign_key "parent_children", "parents"
   add_foreign_key "parents", "books"
   add_foreign_key "performances", "users"
-  add_foreign_key "user_animals", "animals"
   add_foreign_key "user_animals", "users"
 end

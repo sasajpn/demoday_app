@@ -1,5 +1,4 @@
-<a class="btn btn-primary btn-animated collapsed" data-toggle="collapse" href="#collapseContent1" aria-expanded="false" aria-controls="collapseContent">あなたが開始した取引 <i class="fa fa-plus"></i></a>
-<div class="collapse" id="collapseContent1" aria-expanded="false" style="height: 0px;">
+<div class="tab-pane active" id="pill-1">
   <div class="row grid-space-10">
     <% current_user.parents.each do |parent| %>
       <% if parent.book.exchange == false %>

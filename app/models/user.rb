@@ -33,21 +33,27 @@ class User < ActiveRecord::Base
   has_many :addresses, dependent: :destroy
   has_many :messages
 
-  has_one :user_annimal
+  has_one :user_animal
 
-  def create_user_animal
+  after_save do
+    self.create_user_animal(animal_id: convert_animal)
+  end
+
+  def animal_of_user
+    Animal.find(user_animal.animal_id).name
   end
 
   def convert_animal
+    Animal.find(num_of_plus_day).id
   end
 
-  def num_plus_day
-    num_of_year_and_month + birthday.day
+  def num_of_plus_day
+    calculate_from_year_and_month + birthday.day
   end
 
-  def num_of_year_and_month
-    count = original_count
-    (1920..birthday.year).each do |y|
+  def calculate_from_year_and_month
+    count = original_num
+    (1921..birthday.year).each do |y|
       if leap_year(y) == true && !(birthday.month == 1 || birthday.month == 2)
         count += 6
       elsif leap_year(y-1) == true && (birthday.month == 1 || birthday.month == 2)
@@ -57,21 +63,11 @@ class User < ActiveRecord::Base
       end
         count -= 60 if count >= 60
     end
+    count
   end
 
-  def original_count
-    january =
-    february
-    march
-    april
-    may
-    june
-    july
-    august
-    september
-    october
-    november
-    december
+  def original_num
+    OriginalNumber.find(birthday.month).num
   end
 
   def leap_year(year)
