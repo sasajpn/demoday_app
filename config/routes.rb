@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'page#top'
+  get 'users/get_area'
 
   devise_for :users, controllers: {
-    confirmations: 'users/confirmations',
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     passwords: 'users/passwords'

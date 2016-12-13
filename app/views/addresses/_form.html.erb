@@ -1,10 +1,13 @@
 <%= bootstrap_form_for [ user, address ] do |f| %>
   <%= f.text_field :family_name %>
   <%= f.text_field :given_name %>
-  <%= f.text_field :postal_code %>
-  <%= f.text_field :prefecture %>
-  <%= f.text_field :municipality %>
-  <%= f.text_field :street %>
-  <%= f.text_field :building %>
+  <div id="postalcode-result"></div>
+  <%= f.text_field :postal_code, class: "form-control address" %>
+  <div class="btn btn-default" id="getarea-button">郵便番号から住所を入力する</div>
+  <%= f.select :prefecture, prefectures.collect{ |t|[t.name,t.id] }, { prompt: "選択してください" },
+    class: "form-group" %>
+  <%= f.text_field :municipality, class: "form-control address" %>
+  <%= f.text_field :street, class: "form-control address" %>
+  <%= f.text_field :building, class: "form-control" %>
   <%= f.submit %>
 <% end %>

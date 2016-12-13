@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_check
+  before_action :user_check, except: [:get_area]
 
   def show
   end
@@ -20,6 +20,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to parents_url
+  end
+
+  def get_area
+    records = Area.search_area(params[:search_code])
+    render json: records
   end
 
   private

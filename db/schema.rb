@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129050509) do
+ActiveRecord::Schema.define(version: 20161213173716) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.string   "given_name",   limit: 255
     t.string   "family_name",  limit: 255
-    t.integer  "postal_code",  limit: 4
+    t.string   "postal_code",  limit: 255
     t.string   "prefecture",   limit: 255
     t.string   "municipality", limit: 255
     t.string   "street",       limit: 255
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20161129050509) do
   end
 
   add_index "announces", ["book_id"], name: "index_announces_on_book_id", using: :btree
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "postal_code",   limit: 255
+    t.integer  "prefecture_id", limit: 4
+    t.string   "municipality",  limit: 255
+    t.string   "street",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "areas", ["prefecture_id"], name: "index_areas_on_prefecture_id", using: :btree
 
   create_table "books", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -105,6 +116,12 @@ ActiveRecord::Schema.define(version: 20161129050509) do
 
   add_index "performances", ["user_id"], name: "index_performances_on_user_id", using: :btree
 
+  create_table "prefectures", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "user_animals", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "animal_id",  limit: 4
@@ -141,6 +158,7 @@ ActiveRecord::Schema.define(version: 20161129050509) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "announces", "books"
+  add_foreign_key "areas", "prefectures"
   add_foreign_key "books", "users"
   add_foreign_key "children", "books"
   add_foreign_key "children", "parents"
