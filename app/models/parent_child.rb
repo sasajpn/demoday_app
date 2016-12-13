@@ -25,13 +25,6 @@ class ParentChild < ActiveRecord::Base
     @children.destroy_all
   end
 
-  def book_exchanged
-    if parent_done == true && child_done == true
-      parent.book.update(exchange: true)
-      child.book.update(exchange: true)
-    end
-  end
-
   def update_status(user)
     if user == parent.user
       parent.update(status: 5)
@@ -39,5 +32,4 @@ class ParentChild < ActiveRecord::Base
       child.update(status: 5)
     end
   end
-
 end

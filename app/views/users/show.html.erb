@@ -18,11 +18,13 @@
 					<li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="images" aria-expanded="true">1. 開始中の取引</a></li>
 					<li class=""><a href="#pill-2" role="tab" data-toggle="tab" title="video" aria-expanded="false">2. ほしいね！をした取引</a></li>
 					<li class=""><a href="#pill-3" role="tab" data-toggle="tab" title="text" aria-expanded="false">3. 成立した取引</a></li>
+					<li class=""><a href="#pill-4" role="tab" data-toggle="tab" title="text" aria-expanded="false">4. 終了した取引</a></li>
 				</ul>
 				<div class="tab-content clear-style">
 				<%= render partial: 'books/parent_book' %>
 				<%= render partial: 'books/child_book' %>
 				<%= render partial: 'books/establishment' %>
+				<%= render partial: 'books/finish' %>
 				</div>
 			</div>
 			<div class="tab-pane fade" id="vtab3">

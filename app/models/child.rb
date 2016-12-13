@@ -21,4 +21,11 @@ class Child < ActiveRecord::Base
 
   # enum status: { negotiate: 0, confirm: 1, notice: 2, send: 3, recieve: 4 }
 
+  after_update :book_exchanged
+
+  def book_exchanged
+    if status > 3
+      book.update(exchange: true)
+    end
+  end
 end
