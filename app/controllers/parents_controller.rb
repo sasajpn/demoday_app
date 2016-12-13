@@ -9,7 +9,6 @@ class ParentsController < ApplicationController
   end
 
   def show
-    @children = Child.where(parent_id: @parent.id)
   end
 
   def create

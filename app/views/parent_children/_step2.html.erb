@@ -14,7 +14,7 @@
   <%= render partial: 'notice', locals: { object: @parent_child.child } if current_user == child.user && child.status == 1 %>
 <% else %>
   <p class="step-warning">住所が登録されていません！</p>
-  <%= link_to user_path(current_user), class: "btn btn-danger" do %>
+  <%= link_to new_user_address_path(current_user), class: "btn btn-danger" do %>
     マイページから住所を登録してください！
   <% end %>
 <% end %>

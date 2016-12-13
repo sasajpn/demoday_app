@@ -1,0 +1,7 @@
+<%= bootstrap_form_for [@parent_child, @performance] do |f| %>
+  <%= f.select :evaluate, Performance.evaluates_i18n.invert %>
+  <%= f.text_area :comment %>
+  <%= f.hidden_field :evaluator, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: partner(@parent_child) %>
+  <%= f.submit %>
+<% end %>

@@ -1,7 +1,9 @@
-<%= bootstrap_form_for [@parent_child, @performance] do |f| %>
-  <%= f.select :evaluate, Performance.evaluates_i18n.invert %>
-  <%= f.text_area :comment %>
-  <%= f.hidden_field :evaluator, value: current_user.id %>
-  <%= f.hidden_field :user_id, value: partner(@parent_child) %>
-  <%= f.submit %>
-<% end %>
+<section class="main-container">
+  <div class="container">
+    <div class="row">
+      <h1 class="page-title">取引相手の評価</h1>
+      <div class="separator-2"></div>
+      <%= render partial: 'form' %>
+    </div>
+  </div>
+</section>

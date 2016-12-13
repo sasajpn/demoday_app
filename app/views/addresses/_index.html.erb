@@ -1,16 +1,13 @@
 <% current_user.addresses.each.with_index(1) do |address, i| %>
 	<ul class="nav nav-pills" role="tablist">
-		<% i == 1 ? status = "active" : status = "" %>
-		<% i == 1 ? expanded = true : expanded = false %>
-		<li class="#{status}"><a href="#pill-#{i}" role="tab" data-toggle="tab" title="images" aria-expanded="#{expanded}">住所.<%= i %></a></li>
+		<li>住所.<%= i %></a></li>
 	</ul>
-	<div class="tab-pane active" id="pill-#{i}">
+	<div class="tab-pane">
 		<div class="row grid-space-10">
 			<ul class="book-list social-links circle small clearfix hidden-xs">
 				<li class="flickr"><%= link_to edit_user_address_path(current_user, address) do %><i class="fa fa-edit"></i><% end %></li>
 				<li class="googleplus"><%= link_to user_address_path(current_user, address), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } do %><i class="fa fa-trash-o"></i><% end %></li>
 			</ul>
-			<hr />
 			<dl class="dl-horizontal">
 				<dt>名前</dt>
 				<dd><%= address.family_name %> <%= address.given_name %></dd>
@@ -27,4 +24,5 @@
 			</dl>
 		</div>
 	</div>
+	<div class="separator-2"></div>
 <% end %>

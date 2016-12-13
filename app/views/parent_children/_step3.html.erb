@@ -9,5 +9,15 @@
   <p>相手方に本の配送を行ってください。</p>
   <p>本の配送作業が完了しましたら、以下のボタンを押してください。</p>
 <% end %>
-<%= render partial: 'send', locals: { object: parent } if current_user == parent.user && parent.status == 2 %>
-<%= render partial: 'send', locals: { object: child } if current_user == child.user && child.status == 2 %>
+
+<% if current_user == parent.user && parent.status == 2  %>
+<p class="step-notice">以下が本の届け先です。</p>
+<%= render partial: 'address', locals: { address: Address.find(child.address_id) } %>
+<%= render partial: 'send', locals: { object: parent } %>
+<% end %>
+
+<% if current_user == child.user && child.status == 2 %>
+<p class="step-notice">以下が本の届け先です。</p>
+<%= render partial: 'address', locals: { address: Address.find(parent.address_id) } %>
+<%= render partial: 'send', locals: { object: child } %>
+<% end %>

@@ -1,6 +1,9 @@
-<%= bootstrap_form_for [ @parent, @child ] do |f| %>
-  <%= f.hidden_field :parent_id, value: @parent.id %>
-  <%= f.collection_select :book_id, @books, :id, :title %>
-  <%= f.text_area :recommend %>
-  <%= f.submit %>
-<% end %>
+<section class="main-container">
+  <div class="container">
+    <div class="row">
+      <h1 class="page-title">交渉に出す本の選択</h1>
+      <div class="separator-2"></div>
+      <%= render partial: 'form' %>
+    </div>
+  </div>
+</section>

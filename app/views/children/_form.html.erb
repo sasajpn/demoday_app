@@ -1,0 +1,6 @@
+<%= bootstrap_form_for [ @parent, @child ] do |f| %>
+  <%= f.hidden_field :parent_id, value: @parent.id %>
+  <%= f.collection_select :book_id, @books, :id, :title %>
+  <%= f.text_area :recommend %>
+  <%= f.submit %>
+<% end %>

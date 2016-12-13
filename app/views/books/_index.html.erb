@@ -19,7 +19,9 @@
                 <% @parent = Parent.new %>
                 <%= render partial: 'parents/form', locals: { book: book } %>
               <% end %>
-              <% if book.parent.present? %>
+              <% if parent_child = book.parent.try(:parent_child) || book.child.try(:parent_child) %>
+                <%= link_to parent_child_path(parent_child), class:"btn btn-gray" do %>取引を行う <i class="fa fa-check pl-10"></i><% end %>
+              <% elsif book.parent.present? %>
                 <%= link_to parent_path(book.parent), class:"btn btn-gray" do %>あなたが取引主です <i class="fa fa-folder-open pl-10"></i><% end %>
               <% elsif book.child.present? %>
                 <span class="label label-default"><%= book.child.parent.book.user.username %>さんの<%= book.child.parent.book.title %>と交渉中です</span>

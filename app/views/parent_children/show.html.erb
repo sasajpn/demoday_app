@@ -10,7 +10,7 @@
                 <li><a href="#pill-pr-2" role="tab" data-toggle="tab" title="Step 2">Step 2：住所連絡</a></li>
                 <li><a href="#pill-pr-3" role="tab" data-toggle="tab" title="Step 3">Step 3：配送連絡</a></li>
                 <li><a href="#pill-pr-4" role="tab" data-toggle="tab" title="Step 4">Step 4：受け取り連絡</a></li>
-                <li class="active"><a href="#pill-pr-5" role="tab" data-toggle="tab" title="Step 1">取引終了</a></li>
+                <li><a href="#pill-pr-5" role="tab" data-toggle="tab" title="Step 1">取引終了</a></li>
   						</ul>
   						<div class="tab-content clear-style">
   							<div class="tab-pane active" id="pill-pr-1">
@@ -37,15 +37,20 @@
                     <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
                   <% end %>
                 </div>
-  						</div>
-              <div class="tab-pane active" id="pill-pr-5">
-                <p>お互いが本を受け取りました！</p>
-                <p>これで今回の取引は終了です。</p>
-                <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
+                <div class="tab-pane" id="pill-pr-5">
+                  <% if @parent_child.parent.status > 3 && @parent_child.child.status > 3 %>
+                    <p>お互いが本を受け取りました！</p>
+                    <p>これで今回の取引は終了です。</p>
+                    <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
+                  <% else %>
+                    <p class="step-warning">まだ取引が終了していません。</p>
+                  <% end %>
+                </div>
               </div>
-  					</div>
-          </div>
+            <% end %>
+					</div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+</div>

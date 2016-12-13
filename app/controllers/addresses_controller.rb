@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, except: [:index, :new, :create]
+  before_action :set_address, only: [:edit, :update, :destroy]
 
   def index
     @addresses = current_user.addresses
@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
   def create
     @address = current_user.addresses.build(address_params)
     if @address.save
-      redirect_to user_addresses_url(current_user)
+      redirect_to user_url(current_user)
     else
       render 'user/show'
     end
@@ -29,7 +29,7 @@ class AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-    redirect_to user_addresses_url(current_user)
+    redirect_to user_url(current_user)
   end
 
   private
