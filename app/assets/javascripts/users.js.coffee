@@ -5,7 +5,7 @@ $(document).on 'ready page:load', ->
   $('#getarea-button').click ->
     postalcode = $('#address_postal_code').val()
     if postalcode.length != 7
-      $('#postalcode-result').css("color", "#ff0000").html("郵便番号は7桁です.")
+      $('#postalcode-result').css({ "color": "#FF0000", "font-weight": "bold" }).html("郵便番号は7桁で入力してください")
       return false
     $.ajax
       async:    true
@@ -15,14 +15,13 @@ $(document).on 'ready page:load', ->
       dataType: "json"
       context:  this
       error: (jqXHR, textStatus, errorThrown) ->
-        $('#postalcode-result').css("color", "#ff0000").html(errorThrown)
+        $('#postalcode-result').css({ "color": "#D3D3D3", "font-weight": "bold" }).html(errorThrown)
       success: (data, textStatus, jqXHR) ->
         if data?
           $('#address_prefecture').val(data.prefecture_id)
           $('#address_municipality').val(data.municipality)
           $('#address_street').val(data.street)
-          $('#postalcode-result').css("color", "#00dd00").html("入力が完了しました。")
         else
-          $('#postalcode-result').css("color", "#ff0000").html("未登録の郵便番号です。")
+          $('#postalcode-result').css({ "color": "#FF0000", "font-weight": "bold", "font-size": "14px" }).html("その郵便番号は登録されていません")
 
 $('.address').change -> $('#postalcode-result').html("")
