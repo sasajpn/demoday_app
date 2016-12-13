@@ -8,7 +8,8 @@ class PerformancesController < ApplicationController
   def create
     @performance = Performance.new(performance_params)
     if @performance.save
-      redirect_to user_url(current_user)
+      @parent_child.update_status(current_user)
+      redirect_to parent_child_url(@parent_child)
     else
       render :new
     end
