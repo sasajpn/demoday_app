@@ -7,6 +7,7 @@
 #  parent_id  :integer
 #  recommend  :text(65535)
 #  status     :integer          default(0), not null
+#  address_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
