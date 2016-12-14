@@ -1,5 +1,8 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_book, only: [:edit, :update, :destroy]
+  before_action :user_check, except: [:edit, :destroy]
+  before_action :negotiate_now, only: [:edit, :destroy]
 
   def new
     @book = current_user.books.build
@@ -38,5 +41,15 @@ class BooksController < ApplicationController
 
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def user_check
+    @user = User.find(params[:user_id])
+    redirect_to user_url(current_user) if @user != current_user
+  end
+
+  def negotiate_now
+    @book = Book.find(params[:id])
+    redirect_to user_url(current_user) if @book.already_negotiate?
   end
 end

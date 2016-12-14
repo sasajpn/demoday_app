@@ -29,6 +29,6 @@ class Book < ActiveRecord::Base
       message: "その本はすでに登録しています" }
 
   def already_negotiate?
-    parent.present? && child.present?
+    parent.present? || child.present?
   end
 end
