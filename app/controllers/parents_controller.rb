@@ -4,7 +4,7 @@ class ParentsController < ApplicationController
   before_action :already_negotiate, only: [:create]
 
   def index
-    @parents = Parent.within_deadline.order(deadline: :desc).page(params[:page])
+    @parents = Parent.where.not(book_id: current_user.books).within_deadline.order(deadline: :desc).page(params[:page])
     @popular_parent = Parent.order(children_count: :desc).limit(3)
     @books = current_user.books.not_parent.not_child
   end

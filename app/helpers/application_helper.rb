@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  # devise
+
   def resource_name
     :user
   end
@@ -11,6 +14,9 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+
+  # book
+
   def book_form_url
     if controller.action_name == 'edit'
       (@book)
@@ -18,6 +24,10 @@ module ApplicationHelper
       [ current_user, @book ]
     end
   end
+
+  # parent
+
+  # parent_children
 
   def message_form_url
     if controller.action_name == 'edit'
@@ -35,6 +45,7 @@ module ApplicationHelper
     end
   end
 
+  # animal
   def user_icon(animal)
     case
     when animal.include?("チーター")
@@ -61,31 +72,6 @@ module ApplicationHelper
       'Pegasus.jpg'
     when animal.include?("ライオン")
       'Lion.png'
-    end
-  end
-
-
-  def us_icon(animal)
-    case animal.include?("s")
-    when 1, 7, 42, 48
-      ('Cheetah.png')
-    when 2, 8, 41, 47
-      ('Raccoon.png')
-    when 3, 9, 15, 34, 40, 46
-      ('Monkey.png')
-    when 4, 10, 16, 33, 39, 45
-      ('Koala.png')
-    when 5, 44, 50, 53, 56, 59
-      ('Leopard.png')
-    when 6, 43, 49, 54, 55, 60
-      ('Tiger.png')
-    when 11, 17, 32, 38
-      ('Deer.png')
-    when 12, 18, 31, 37
-      ('Elephants')
-    when 13, 19, 24, 25, 30, 36
-      ('Wolf.png')
-    when 14, 20, 23, 26, 29, 35
     end
   end
 

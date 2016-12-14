@@ -31,26 +31,24 @@
         <div class="separator-2"></div>
         <div class="row grid-space-10">
           <% @parents.each do |parent| %>
-            <% if parent.parent_child.nil? && parent.user != current_user %>
+            <% unless parent.parent_child %>
               <div class="col-sm-6 col-md-3">
                 <h4><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %></h4>
                 <div class="book-list image-box team-member style-2 shadow bordered mb-20 text-center">
                   <div class="overlay-container overlay-visible">
                     <%= image_tag('blog-1.jpg') %>
                   </div>
-                  <span class="label label-info"><%= parent.children.count %>人がほしいね！と言っています</span>
+                  <span class="label label-info"><%= parent.children.size %>人がほしいね！と言っています</span>
                   <div class="body">
-                    <h3 class="margin-clear"><%= parent.book.title %></h3>
-                    <small><%= parent.book.author %></small>
+                    <h3 class="margin-clear"><%= parent.title %></h3>
+                    <small><%= parent.author %></small>
                     <div class="separator mt-10"></div>
-                    <% if current_user.books.blank? %>
-                      <span class="label label-danger">マイブックが登録されていません！</span>
-                      <%= link_to new_user_book_path(current_user), class: "btn btn-animated btn-sm btn-success" do %>
-                        マイブックの登録 <i class="fa fa-arrow-right"></i>
-                      <% end %>
-                    <% elsif parent.children.where(book_id: current_user.books).blank? %>
+                    <% if parent.children.where(book_id: current_user.books).blank? %>
                       <% if @books.blank? %>
                         <span class="label label-success">交渉に出せる本がありません</span>
+                        <%= link_to new_user_book_path(current_user), class: "btn btn-animated btn-sm btn-success" do %>
+                          マイブックの登録 <i class="fa fa-arrow-right"></i>
+                        <% end %>
                       <% end %>
                         <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
                           data: {

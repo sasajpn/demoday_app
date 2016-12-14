@@ -21,6 +21,7 @@ class Parent < ActiveRecord::Base
   has_one :user, through: :book
 
   scope :within_deadline, -> { where('deadline > ?', Time.now()) }
+  # scope :want, ->(user) { joins(:children).where(book_id: user.books) }
 
   after_update :book_exchanged
 
