@@ -18,7 +18,10 @@ class Child < ActiveRecord::Base
   belongs_to :book
   delegate :title, :author, :exchange, to: :book
   has_one :user, through: :book
+
   belongs_to :parent, counter_cache: true
+  has_one :parent_book, through: :parent, source: :book
+  has_one :partner, through: :parent_book, source: :user
 
   # enum status: { negotiate: 0, confirm: 1, notice: 2, send: 3, recieve: 4 }
 

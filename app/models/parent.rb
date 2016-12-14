@@ -17,27 +17,16 @@ class Parent < ActiveRecord::Base
   has_one :parent_child
 
   belongs_to :book
+  delegate :title, :author, :exchange, to: :book
   has_one :user, through: :book
 
   scope :within_deadline, -> { where('deadline > ?', Time.now()) }
 
   after_update :book_exchanged
 
-  def book_title
-    book.title
-  end
-
-  def book_author
-    book.author
-  end
-
   def book_exchanged
     if status > 3
       book.update(exchange: true)
     end
-  end
-
-  def book_exchanged?
-    book.exchange
   end
 end
