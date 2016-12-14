@@ -95,12 +95,13 @@ ActiveRecord::Schema.define(version: 20161213173716) do
   add_index "parent_children", ["parent_id"], name: "index_parent_children_on_parent_id", using: :btree
 
   create_table "parents", force: :cascade do |t|
-    t.integer  "book_id",    limit: 4
+    t.integer  "book_id",        limit: 4
     t.datetime "deadline"
-    t.integer  "status",     limit: 1, default: 0, null: false
-    t.integer  "address_id", limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "status",         limit: 1, default: 0, null: false
+    t.integer  "address_id",     limit: 4
+    t.integer  "children_count", limit: 4, default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "parents", ["book_id"], name: "index_parents_on_book_id", using: :btree

@@ -5,23 +5,25 @@
         <h1 class="page-title">人気の取引</h1>
         <div class="separator-2"></div>
         <div class="row grid-space-10">
-          <div class="col-sm-4">
-            <div class="image-box team-member style-2 shadow bordered light-gray-bg text-center">
-              <div class="overlay-container overlay-visible">
-                <%= image_tag('blog-1.jpg') %>
-              </div>
-              <div class="body">
-              <h3 class="margin-clear"></h3>
-              <small>CEO</small>
-              <div class="separator mt-10"></div>
-              <ul class="social-links circle dark margin-clear">
-              <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
-              <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-              <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
-              </ul>
+          <% @popular_parent.each do |parent| %>
+            <div class="col-sm-4">
+              <div class="image-box team-member style-2 shadow bordered light-gray-bg text-center">
+                <div class="overlay-container overlay-visible">
+                  <%= image_tag('blog-1.jpg') %>
+                </div>
+                <div class="body">
+                <h3 class="margin-clear"><%= parent.book.title %></h3>
+                <small><%= parent.book.author %></small>
+                <div class="separator mt-10"></div>
+                <ul class="social-links circle dark margin-clear">
+                <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+                <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
+                </ul>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
         <br>
         <br>

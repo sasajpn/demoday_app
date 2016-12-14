@@ -18,6 +18,9 @@ class Book < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :not_parent, -> { where.not(id: Parent.select(:book_id)) }
+  scope :not_child, -> { where.not(id: Child.select(:book_id)) }
+
   enum status: { very_good: 3, good: 2, bad: 1, very_bad: 0 }
 
   validates :title, :author,

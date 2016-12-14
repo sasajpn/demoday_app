@@ -16,34 +16,34 @@
                 <%= render partial: 'step1', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
 							</div>
 							<div class="tab-pane" id="pill-pr-2">
-                <% if @parent_child.parent.status > 0 && @parent_child.child.status > 0 %>
+                <% if @parent_child.parent_status > 0 && @parent_child.child_status > 0 %>
                   <%= render partial: 'step2', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
                 <% else %>
                   <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
                 <% end %>
 							</div>
               <div class="tab-pane" id="pill-pr-3">
-                <% if @parent_child.parent.status > 1 && @parent_child.child.status > 1 %>
+                <% if @parent_child.parent_status > 1 && @parent_child.child_status > 1 %>
                   <%= render partial: 'step3', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
                 <% else %>
                   <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
                 <% end %>
 							</div>
               <div class="tab-pane" id="pill-pr-4">
-                <% if @parent_child.parent.status > 2 && @parent_child.child.status > 2 %>
+                <% if @parent_child.parent_status > 2 && @parent_child.child_status > 2 %>
                   <%= render partial: 'step4', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
                 <% else %>
                   <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
                 <% end %>
               </div>
               <div class="tab-pane" id="pill-pr-5">
-                <% if @parent_child.parent.status > 3 && @parent_child.child.status > 3 %>
+                <% if @parent_child.parent_status > 3 && @parent_child.child_status > 3 %>
                   <p>お互いが本を受け取りました！</p>
                   <p>これで今回の取引は終了です。</p>
-                  <% if current_user == @parent_child.parent.user && @parent_child.parent.status < 5 %>
+                  <% if current_user == @parent_child.parent.user && @parent_child.parent_status < 5 %>
                     <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
                   <% end %>
-                  <% if current_user == @parent_child.child.user && @parent_child.child.status < 5 %>
+                  <% if current_user == @parent_child.child.user && @parent_child.child_status < 5 %>
                     <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
                   <% end %>
                 <% else %>

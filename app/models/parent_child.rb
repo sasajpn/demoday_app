@@ -20,6 +20,14 @@ class ParentChild < ActiveRecord::Base
   after_create :destroy_children_of_parent
   after_update :book_exchanged
 
+  def parent_status
+    parent.status
+  end
+  
+  def child_status
+    child.status
+  end
+
   def destroy_children_of_parent
     @children = parent.children.where.not(id: child)
     @children.destroy_all

@@ -1,5 +1,5 @@
 <% current_user.parents.each do |parent| %>
-  <% if parent.book.exchange == false %>
+  <% if parent.book_exchanged? %>
     <% if parent.parent_child.present? %>
       <div class="col-sm-6 col-md-3">
         <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
@@ -7,8 +7,8 @@
           <%= image_tag('blog-1.jpg') %>
           </div>
           <div class="body">
-            <h3 class="margin-clear"><%= parent.book.title %></h3>
-            <small><%= parent.book.author %></small>
+            <h3 class="margin-clear"><%= parent.book_title %></h3>
+            <small><%= parent.book_author %></small>
             <div class="separator mt-10"></div>
             <%= link_to parent_child_path(parent.parent_child), class:"btn btn-gray" do %>取引を行う <i class="fa fa-check pl-10"></i><% end %>
           </div>

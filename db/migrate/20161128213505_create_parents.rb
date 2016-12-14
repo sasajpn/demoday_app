@@ -5,6 +5,7 @@ class CreateParents < ActiveRecord::Migration
       t.datetime :deadline
       t.integer :status, default: 0, null: false, limit:1
       t.integer :address_id
+      t.integer :children_count, default: 0
 
       t.timestamps null: false
     end

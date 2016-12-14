@@ -71,4 +71,5 @@ group :development do
   gem 'hirb-unicode'
   gem 'rubocop', require: false
   gem 'letter_opener'
+  gem 'rails_best_practices', require: false
 end
