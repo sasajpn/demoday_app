@@ -17,7 +17,7 @@ class Parent < ActiveRecord::Base
   has_one :parent_child
 
   belongs_to :book
-  delegate :title, :author, :exchange, to: :book
+  delegate :title, :author, :image, :exchange, to: :book
   has_one :user, through: :book
 
   scope :within_deadline, -> { where('deadline > ?', Time.now()) }

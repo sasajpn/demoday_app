@@ -9,22 +9,22 @@
 			<div class="tab-pane fade active in" id="vtab1">
 				<h3 class="title">マイブック</h3>
 				<%= link_to new_user_book_path(current_user), class: "btn btn-default" do %>新しく本を登録する<% end %>
-				<%= render partial: 'books/index', locals: { books: current_user.books } %>
+				<%= render partial: 'books/index', locals: { books: current_user.books.not_parent.not_child } %>
 			</div>
 			<div class="tab-pane fade" id="vtab2">
 				<h3 class="title">あなたの取引一覧</h3>
 				<div class="separator mt-10"></div>
 				<ul class="nav nav-pills" role="tablist">
-					<li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="images" aria-expanded="true">1. 開始中の取引</a></li>
+					<li class="active"><a href="#pill-1" role="tab" data-toggle="tab" aria-expanded="true">1. 開始中の取引</a></li>
 					<li class=""><a href="#pill-2" role="tab" data-toggle="tab" title="video" aria-expanded="false">2. ほしいね！をした取引</a></li>
 					<li class=""><a href="#pill-3" role="tab" data-toggle="tab" title="text" aria-expanded="false">3. 成立した取引</a></li>
 					<li class=""><a href="#pill-4" role="tab" data-toggle="tab" title="text" aria-expanded="false">4. 終了した取引</a></li>
 				</ul>
 				<div class="tab-content clear-style">
-				<%= render partial: 'books/parent_book' %>
-				<%= render partial: 'books/child_book' %>
-				<%= render partial: 'books/establishment' %>
-				<%= render partial: 'books/finish' %>
+				<%= render partial: 'books/deal/parent_book' %>
+				<%= render partial: 'books/deal/child_book' %>
+				<%= render partial: 'books/deal/establishment' %>
+				<%= render partial: 'books/deal/finish' %>
 				</div>
 			</div>
 			<div class="tab-pane fade" id="vtab3">

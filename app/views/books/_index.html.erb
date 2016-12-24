@@ -3,8 +3,8 @@
     <% books.each do |book| %>
       <% if book.exchange == false %>
         <div class="col-sm-6 col-md-3">
-          <% add_style = "hidden-link" if book.already_negotiate? %>
-          <ul class="book-list social-links circle small clearfix hidden-xs <%= add_style %>">
+          <% invisible = "hidden-link" if book.already_negotiate? %>
+          <ul class="book-list social-links circle small clearfix hidden-xs <%= invisible %>">
             <li class="googleplus"><%= link_to book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } do %><i class="fa fa-trash-o"></i><% end %></li>
           </ul>
           <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
@@ -14,8 +14,10 @@
               <div class="overlay-bottom">
                 <p class="lead margin-clear"><%= book.title %></p>
                 <small><%= book.author %></small>
-                <hr />
-                <%= render partial: 'parents/form', locals: { book: book, parent: Parent.new } if book.parent.nil? && book.child.nil? %>
+                <% if book.parent.nil? && book.child.nil? %>
+                  <hr />
+                  <%= render partial: 'parents/form', locals: { book: book, parent: Parent.new } %>
+                <% end %>
               </div>
             </div>
           </div>

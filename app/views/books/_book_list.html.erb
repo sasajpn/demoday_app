@@ -1,8 +1,0 @@
-<% if @books.present? %>
-  <% book = @books.first %>
-    <div class="list">
-      <%= image_tag(book.image, style: "width: 70px; height: 100px;") %>
-      <%= book.title %>
-      <%= book.author %>
-    </div>
-<% end %>

@@ -1,15 +1,16 @@
 <% current_user.parents.each do |parent| %>
-  <% if parent.exchange == true %>
+  <% if parent.exchange == false %>
     <% if parent.parent_child.present? %>
       <div class="col-sm-6 col-md-3">
         <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
           <div class="overlay-container overlay-visible">
-          <%= image_tag('blog-1.jpg') %>
+            <%= image_tag(parent.image, style: "width: 250px; height: 350px;") unless parent.image.blank? %>
+            <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") if parent.image.blank? %>
           </div>
-          <div class="body">
-            <h3 class="margin-clear"><%= parent.title %></h3>
+          <div class="overlay-bottom">
+            <p class="lead margin-clear"><%= parent.title %></p>
             <small><%= parent.author %></small>
-            <div class="separator mt-10"></div>
+            <hr />
             <%= link_to parent_child_path(parent.parent_child), class:"btn btn-gray" do %>取引を行う <i class="fa fa-check pl-10"></i><% end %>
           </div>
         </div>

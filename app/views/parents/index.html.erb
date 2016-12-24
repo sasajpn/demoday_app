@@ -4,70 +4,12 @@
       <div class="main col-md-12">
         <h1 class="page-title">人気の取引</h1>
         <div class="separator-2"></div>
-        <div class="row grid-space-10">
-          <% @popular_parent.each do |parent| %>
-            <div class="col-sm-4">
-              <div class="image-box team-member style-2 shadow bordered light-gray-bg text-center">
-                <div class="overlay-container overlay-visible">
-                  <%= image_tag('blog-1.jpg') %>
-                </div>
-                <div class="body">
-                <h3 class="margin-clear"><%= parent.book.title %></h3>
-                <small><%= parent.book.author %></small>
-                <div class="separator mt-10"></div>
-                <ul class="social-links circle dark margin-clear">
-                <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
-                <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-                <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
-                </ul>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <%= render partial: 'index', locals: { object: @popular_parent } %>
         <br>
         <br>
         <h1 class="page-title">最近開始された取引</h1>
         <div class="separator-2"></div>
-        <div class="row grid-space-10">
-          <% @parents.each do |parent| %>
-            <% unless parent.parent_child %>
-              <div class="col-sm-6 col-md-3">
-                <h4><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %></h4>
-                <div class="book-list image-box team-member style-2 shadow bordered mb-20 text-center">
-                  <div class="overlay-container overlay-visible">
-                    <%= image_tag('blog-1.jpg') %>
-                  </div>
-                  <span class="label label-info"><%= parent.children.size %>人がほしいね！と言っています</span>
-                  <div class="body">
-                    <h3 class="margin-clear"><%= parent.title %></h3>
-                    <small><%= parent.author %></small>
-                    <div class="separator mt-10"></div>
-                    <% if parent.children.where(book_id: current_user.books).blank? %>
-                      <% if @books.blank? %>
-                        <span class="label label-success">交渉に出せる本がありません</span>
-                        <%= link_to new_user_book_path(current_user), class: "btn btn-animated btn-sm btn-success" do %>
-                          マイブックの登録 <i class="fa fa-arrow-right"></i>
-                        <% end %>
-                      <% end %>
-                        <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-default btn-sm",
-                          data: {
-                            confirm: "ほしいね！を押して、交渉に利用する本を選択すると、この取引が終了するまでその本を他の取引に利用することができなくなりますが、よろしいですか？",
-                            commit: "交渉開始",
-                            cancel: "取り消す"
-                          },
-                             title: "交渉開始の確認" %>
-                    <% else %>
-                      <% @child = parent.children.where(book_id: current_user.books).first %>
-                      <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-danger btn-sm",
-                         method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render partial: 'index', locals: { object: @parents } %>
       </div>
     </div>
   </div>
