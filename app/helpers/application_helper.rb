@@ -14,17 +14,6 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
-
-  # book
-
-  def book_form_url
-    if controller.action_name == 'edit'
-      (@book)
-    elsif controller.action_name == 'new'
-      [ current_user, @book ]
-    end
-  end
-
   # parent
 
   # parent_children

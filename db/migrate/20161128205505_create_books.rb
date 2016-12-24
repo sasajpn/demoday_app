@@ -4,6 +4,7 @@ class CreateBooks < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
       t.string :title
       t.string :author
+      t.string :image
       t.integer :status
       t.boolean :exchange, default: false
 

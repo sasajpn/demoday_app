@@ -40,6 +40,9 @@ gem 'pusher'
 gem 'config'
 gem 'dotenv-rails'
 
+# Amazon API
+gem 'amazon-ecs'
+
 # Application Server
 gem 'unicorn'
 

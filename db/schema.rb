@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20161213173716) do
     t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
     t.string   "author",     limit: 255
+    t.string   "image",      limit: 255
     t.integer  "status",     limit: 4
     t.boolean  "exchange",               default: false
     t.datetime "created_at",                             null: false

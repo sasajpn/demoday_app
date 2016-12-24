@@ -1,5 +1,5 @@
-<%= form_for [ book, @parent ] do |f| %>
+<%= form_for [ book, parent ] do |f| %>
   <%= f.hidden_field :book_id, value: book.id %>
   <%= f.hidden_field :deadline, value: Time.now() + 1.week %>
-  <%= f.submit "取引に出す", class: "btn btn-default", data: { confirm: "1週間以内にこの本に誰かがほしいね！を押すと、取引のキャンセルはできなくなりますがよろしいですか？"}  %>
+  <%= f.submit "取引に出す", class: "btn btn-gray-transparent  btn-sm", data: { confirm: "1週間以内にこの本に誰かがほしいね！を押すと、取引のキャンセルはできなくなりますがよろしいですか？"}  %>
 <% end %>

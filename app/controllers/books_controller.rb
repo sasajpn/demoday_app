@@ -1,11 +1,30 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [:edit, :update, :destroy]
-  before_action :user_check, except: [:edit, :destroy]
-  before_action :negotiate_now, only: [:edit, :destroy]
+  before_action :set_book, only: [:destroy]
+  before_action :user_check, except: [:destroy]
+  before_action :negotiate_now, only: [:destroy]
 
   def new
-    @book = current_user.books.build
+    @books = []
+    if params[:keyword].present?
+      Amazon::Ecs.debug = true
+      books = Amazon::Ecs.item_search(
+        params[:keyword],
+        search_index: 'Books',
+        dataType: 'script',
+        response_group: 'ItemAttributes, Images',
+        country: 'jp',
+        power: "Not kindle"
+      )
+      books.items.each do |item|
+        book = current_user.books.build(
+          title: item.get('ItemAttributes/Title'),
+          author: item.get('ItemAttributes/Author'),
+          image: item.get('LargeImage/URL')
+        )
+        @books << book
+      end
+    end
   end
 
   def create
@@ -17,17 +36,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @book.update(book_params)
-      redirect_to user_url(current_user)
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @book.destroy
     redirect_to user_url(current_user)
@@ -36,7 +44,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :status, :user_id)
+    params.require(:book).permit(:title, :author, :image, :status, :user_id)
   end
 
   def set_book
