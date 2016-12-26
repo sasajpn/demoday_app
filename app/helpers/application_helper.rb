@@ -27,6 +27,7 @@ module ApplicationHelper
   end
 
   # animal
+
   def user_icon(animal)
     case
     when animal.include?("チーター")

@@ -9,20 +9,27 @@
             <p class="lead margin-clear"><%= parent.title %></p>
             <small><%= parent.author %></small>
             <hr />
+            <% if parent.children.size != 0 %>
+              <div class="label"><%= parent.children.size %>人がほしいね！を押しました</div>
+            <% else %>
+              <div class="label">誰もほしいね！を押していません</div>
+            <% end %>
+            <br />
             <% if parent.children.where(book_id: current_user.books).blank? %>
               <% if @books.blank? %>
-                <span class="label label-success">交渉に出せる本がありません</span>
-                <%= link_to new_user_book_path(current_user), class: "btn btn-animated btn-sm btn-success" do %>
+                <span class="label">交渉に出せる本がありません</span>
+                <%= link_to new_user_book_path(current_user), class: "btn btn-sm btn-success" do %>
                   マイブックの登録 <i class="fa fa-arrow-right"></i>
                 <% end %>
-              <% end %>
+              <% else %>
                 <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-sm" %>
+              <% end %>
             <% else %>
               <% @child = parent.children.where(book_id: current_user.books).first %>
               <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-sm",
                  method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
             <% end %>
-            <h5><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %>まで</h5>
+            <h5 class="label"><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %>まで</h5>
           </div>
         </div>
       </div>

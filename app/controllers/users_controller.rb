@@ -35,8 +35,6 @@ class UsersController < ApplicationController
 
   def user_check
     @user = User.find(params[:id])
-    if current_user != @user
-      redirect_to root_url, notice: "そのページはご利用いだだけません"
-    end
+    redirect_to user_url(current_user), notice: "そのページはご利用いだだけません" unless current_user == @user
   end
 end

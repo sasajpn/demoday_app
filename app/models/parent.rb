@@ -23,6 +23,7 @@ class Parent < ActiveRecord::Base
 
   scope :within_deadline, -> { where('deadline > ?', Time.now()) }
   scope :without_deadline, -> { where('deadline < ?', Time.now()) }
+  scope :not_mine, ->(user) { where.not(book_id: user.books) }
   # scope :want, ->(user) { joins(:children).where(book_id: user.books) }
 
   after_update :book_exchanged

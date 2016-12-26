@@ -4,6 +4,7 @@ class ChildrenController < ApplicationController
   before_action :become_deadline, only: [:new, :create]
   before_action :already_done, only: [:new, :create]
   before_action :already_negotiate, only: [:create]
+  before_action :your_book, only: [:new, :create]
 
   def new
     @child = Child.new
@@ -62,7 +63,7 @@ class ChildrenController < ApplicationController
   end
 
   def your_book
-    @parent = Parent.find(params[:id])
+    @parent = Parent.find(params[:parent_id])
     if @parent.user == current_user
       redirect_to parents_url, notice: "その取引はあなたが開始したものです"
     end
