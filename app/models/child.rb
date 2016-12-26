@@ -23,6 +23,8 @@ class Child < ActiveRecord::Base
   has_one :parent_book, through: :parent, source: :book
   has_one :partner, through: :parent_book, source: :user
 
+  validates :recommend,
+    length: { maximum: 140 }
   # enum status: { negotiate: 0, confirm: 1, notice: 2, send: 3, recieve: 4 }
 
   after_update :book_exchanged

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      sign_in(@user, bypass: true) if current_user.id == @user.id
+      sign_in(@user, bypass: true) if current_user == @user
       redirect_to user_url(current_user)
     else
       render :edit

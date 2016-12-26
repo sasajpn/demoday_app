@@ -12,7 +12,7 @@
 		            <div class="body">
 		              <h3 class="margin-clear"><%= child.book.title %></h3>
 		              <small><%= child.book.author %></small>
-									<p><%= child.recommend if child.recommend.present? %></p>
+									<p><%= child.recommend if child.recommend? %></p>
 		              <div class="separator mt-10"></div>
 									<%= render partial: 'parent_children/form', locals: { parent: @parent, parent_child: @parent.build_parent_child, child: child } %>
 		            </div>

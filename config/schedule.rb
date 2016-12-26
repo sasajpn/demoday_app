@@ -1,3 +1,7 @@
+set :output, "log/cron.log"
+set :environment, :development
+env :PATH, ENV['PATH']
+
 every 1.minute do
-  runner "Parent.destroy"
+  runner "Tasks::DestroyParents.execute"
 end

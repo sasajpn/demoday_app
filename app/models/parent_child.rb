@@ -2,18 +2,14 @@
 #
 # Table name: parent_children
 #
-#  id          :integer          not null, primary key
-#  parent_id   :integer
-#  child_id    :integer
-#  parent_done :boolean          default(FALSE)
-#  child_done  :boolean          default(FALSE)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :integer          not null, primary key
+#  parent_id  :integer
+#  child_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class ParentChild < ActiveRecord::Base
-  has_one :message
-
   belongs_to :parent
   belongs_to :child
 
@@ -23,7 +19,7 @@ class ParentChild < ActiveRecord::Base
   def parent_status
     parent.status
   end
-  
+
   def child_status
     child.status
   end

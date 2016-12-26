@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: areas
+#
+#  id            :integer          not null, primary key
+#  postal_code   :string(255)
+#  prefecture_id :integer
+#  municipality  :string(255)
+#  street        :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class Area < ActiveRecord::Base
   belongs_to :prefecture
 

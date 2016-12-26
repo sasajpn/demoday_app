@@ -14,6 +14,8 @@
 class Performance < ActiveRecord::Base
   belongs_to :user
 
+  validates :comment,
+    length: { maximum: 140 }
   enum evaluate: { very_good: 3, good: 2, bad: 1, very_bad: 0 }
 
 end

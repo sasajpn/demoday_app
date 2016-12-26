@@ -18,6 +18,7 @@ module DemodayApp
     config.i18n.fallbacks = { ja: :en }
     config.active_record.default_timezone = :local
     config.active_record.raise_in_transactional_callbacks = true
+    config.autoload_paths += Dir["#{config.root}/lib"]
 
     config.generators do |g|
       g.stylesheets false

@@ -10,8 +10,8 @@
   <p>以下からあなたの通知する住所を選択してください。</p>
 <% end %>
 <% if current_user.addresses.any? %>
-  <%= render partial: 'notice', locals: { object: @parent_child.parent } if current_user == parent.user && parent.status == 1 %>
-  <%= render partial: 'notice', locals: { object: @parent_child.child } if current_user == child.user && child.status == 1 %>
+  <%= render 'notice', object: parent if current_user == parent.user && parent.status == 1 %>
+  <%= render 'notice', object: child if current_user == child.user && child.status == 1 %>
 <% else %>
   <p class="step-warning">住所が登録されていません！</p>
   <%= link_to new_user_address_path(current_user), class: "btn btn-danger" do %>

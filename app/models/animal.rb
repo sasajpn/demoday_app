@@ -1,4 +1,4 @@
-class Animal < ActiveHash::Base  
+class Animal < ActiveHash::Base
   self.data = [
     { id: 1, name: "長距離ランナーのチーター"},
     { id: 2, name: "社交家のたぬき"},

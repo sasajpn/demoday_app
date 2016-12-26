@@ -60,7 +60,7 @@
       to see more useful Rails Best Practices.
     </p>
     <p>
-        Found 64 warnings.
+        Found 59 warnings.
     </p>
     <table>
           <tr>
@@ -139,7 +139,7 @@
             <td class='filename'>
                 db/schema.rb
             </td>
-            <td class='line'>64</td>
+            <td class='line'>65</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/' target='_blank'>always add db index (children => [address_id])</a>
             </td>
@@ -148,41 +148,14 @@
             <td class='filename'>
                 db/schema.rb
             </td>
-            <td class='line'>97</td>
+            <td class='line'>98</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/' target='_blank'>always add db index (parents => [address_id])</a>
             </td>
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/books/_child_book.html.erb
-            </td>
-            <td class='line'>15</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_child_book.html.erb
-            </td>
-            <td class='line'>15</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_index.html.erb
-            </td>
-            <td class='line'>28</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_parent_book.html.erb
+                app/views/books/deal/_parent_book.html.erb
             </td>
             <td class='line'>4</td>
             <td class='message'>
@@ -191,45 +164,9 @@
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/books/_parent_book.html.erb
-            </td>
-            <td class='line'>12</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_parent_book.html.erb
-            </td>
-            <td class='line'>13</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_establish_child.html.erb
+                app/views/books/deal/_establish_child.html.erb
             </td>
             <td class='line'>2</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_establish_child.html.erb
-            </td>
-            <td class='line'>10</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/books/_establish_child.html.erb
-            </td>
-            <td class='line'>11</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
             </td>
@@ -270,24 +207,6 @@
               <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
             </td>
           </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/parents/index.html.erb
-            </td>
-            <td class='line'>15</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/parents/index.html.erb
-            </td>
-            <td class='line'>16</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
           <tr class="MoveCodeIntoControllerReview">
             <td class='filename'>
                 app/views/parent_children/_step3.html.erb
@@ -319,7 +238,7 @@
             <td class='filename'>
                 app/helpers/application_helper.rb
             </td>
-            <td class='line'>32</td>
+            <td class='line'>21</td>
             <td class='message'>
               <a href='' target='_blank'>remove unused methods (ApplicationHelper#message_form_url)</a>
             </td>
@@ -328,7 +247,7 @@
             <td class='filename'>
                 app/helpers/application_helper.rb
             </td>
-            <td class='line'>78</td>
+            <td class='line'>67</td>
             <td class='message'>
               <a href='' target='_blank'>remove unused methods (ApplicationHelper#step_navs)</a>
             </td>
@@ -425,9 +344,27 @@
           </tr>
           <tr class="ReplaceInstanceVariableWithLocalVariableReview">
             <td class='filename'>
-                app/views/parents/_form.html.erb
+                app/views/books/_form.html.erb
             </td>
             <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/parents/_index.html.erb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/parents/_index.html.erb
+            </td>
+            <td class='line'>22</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
             </td>
@@ -448,15 +385,6 @@
             <td class='line'>12</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2011/08/19/restrict-auto-generated-routes/' target='_blank'>restrict auto-generated routes users/addresses (except: [:show])</a>
-            </td>
-          </tr>
-          <tr class="RestrictAutoGeneratedRoutesReview">
-            <td class='filename'>
-                config/routes.rb
-            </td>
-            <td class='line'>13</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2011/08/19/restrict-auto-generated-routes/' target='_blank'>restrict auto-generated routes users/books (except: [:show, :index])</a>
             </td>
           </tr>
           <tr class="SimplifyRenderInViewsReview">
@@ -632,7 +560,7 @@
           </tr>
           <tr class="SimplifyRenderInViewsReview">
             <td class='filename'>
-                app/views/books/edit.html.erb
+                app/views/books/new.html.erb
             </td>
             <td class='line'>6</td>
             <td class='message'>
@@ -643,9 +571,45 @@
             <td class='filename'>
                 app/views/books/new.html.erb
             </td>
-            <td class='line'>6</td>
+            <td class='line'>7</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/12/04/simplify-render-in-views/' target='_blank'>simplify render in views</a>
+            </td>
+          </tr>
+          <tr class="SimplifyRenderInViewsReview">
+            <td class='filename'>
+                app/views/parents/index.html.erb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2010/12/04/simplify-render-in-views/' target='_blank'>simplify render in views</a>
+            </td>
+          </tr>
+          <tr class="SimplifyRenderInViewsReview">
+            <td class='filename'>
+                app/views/parents/index.html.erb
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2010/12/04/simplify-render-in-views/' target='_blank'>simplify render in views</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/views/books/deal/_finish.html.erb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2010/10/03/use-query-attribute/' target='_blank'>use query attribute (book.image?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/views/books/deal/_finish.html.erb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2010/10/03/use-query-attribute/' target='_blank'>use query attribute (book.image?)</a>
             </td>
           </tr>
           <tr class="UseQueryAttributeReview">
@@ -679,7 +643,7 @@
             <td class='filename'>
                 app/controllers/books_controller.rb
             </td>
-            <td class='line'>48</td>
+            <td class='line'>56</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/07/20/use-scope-access/' target='_blank'>use scope access</a>
             </td>
@@ -698,15 +662,6 @@
                 app/models/animal.rb
             </td>
             <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/models/parent_child.rb
-            </td>
-            <td class='line'>26</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/' target='_blank'>remove trailing whitespace</a>
             </td>

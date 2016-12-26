@@ -31,9 +31,11 @@ class User < ActiveRecord::Base
   has_many :parents, through: :books
   has_many :children, through: :books
   has_many :addresses, dependent: :destroy
-  has_many :messages
 
   has_one :user_animal
+
+  validates :birthday,
+    presence: true
 
   after_save do
     self.create_user_animal(animal_id: convert_animal)

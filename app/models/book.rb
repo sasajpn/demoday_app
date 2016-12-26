@@ -6,6 +6,7 @@
 #  user_id    :integer
 #  title      :string(255)
 #  author     :string(255)
+#  image      :string(255)
 #  status     :integer
 #  exchange   :boolean          default(FALSE)
 #  created_at :datetime         not null
