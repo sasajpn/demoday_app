@@ -28,10 +28,13 @@ class Parent < ActiveRecord::Base
   # scope :want, ->(user) { joins(:children).where(book_id: user.books) }
 
   after_update :book_exchanged
+  after_update :trading_done
 
   def book_exchanged
-    if status > 3
-      book.update(exchange: true)
-    end
+    book.update(exchange: true) if status > 3
+  end
+
+  def trading_done
+    parent_child.update(done: true) if status > 3 && child.status > 3
   end
 end

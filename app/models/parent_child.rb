@@ -14,7 +14,6 @@ class ParentChild < ActiveRecord::Base
   belongs_to :child
 
   after_create :destroy_children_of_parent
-  after_update :book_exchanged
 
   def parent_status
     parent.status

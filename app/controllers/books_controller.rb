@@ -32,6 +32,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to user_url(current_user)
     else
+      @books = []
       render :new
     end
   end

@@ -14,6 +14,7 @@
 
 class Child < ActiveRecord::Base
   has_one :parent_child
+  has_one :dealer, through: :parent_child, source: :parent
 
   belongs_to :book
   delegate :title, :author, :image, :exchange, to: :book
@@ -28,10 +29,13 @@ class Child < ActiveRecord::Base
   # enum status: { negotiate: 0, confirm: 1, notice: 2, send: 3, recieve: 4 }
 
   after_update :book_exchanged
+  after_update :trading_done
 
   def book_exchanged
-    if status > 3
-      book.update(exchange: true)
-    end
+    book.update(exchange: true) if status > 3
+  end
+
+  def trading_done
+    parent_child.update(done: true) if status > 3 && dealer.status > 3
   end
 end

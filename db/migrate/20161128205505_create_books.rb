@@ -6,7 +6,6 @@ class CreateBooks < ActiveRecord::Migration
       t.string :author
       t.string :image
       t.integer :status
-      t.integer :pid
       t.boolean :exchange, default: false
 
       t.timestamps null: false

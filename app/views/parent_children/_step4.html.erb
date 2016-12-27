@@ -1,4 +1,6 @@
-<% if current_user == parent.user && parent.status > 3 %>
+<% if parent.status > 3 && child.status > 3 %>
+<p>お互いが本を受け取りました！</p>
+<% elsif current_user == parent.user && parent.status > 3 %>
   <p>相手方が本を受け取るまでしばらくお待ちください。</p>
 <% elsif current_user == child.user && child.status > 3 %>
   <p>相手方が本を受け取るまでしばらくお待ちください。</p>

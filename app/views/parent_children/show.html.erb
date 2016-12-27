@@ -38,8 +38,7 @@
               </div>
               <div class="tab-pane" id="pill-pr-5">
                 <% if @parent_child.parent_status > 3 && @parent_child.child_status > 3 %>
-                  <p>お互いが本を受け取りました！</p>
-                  <p>これで今回の取引は終了です。</p>
+                  <p>これで今回の取引は終了です！</p>
                   <% if current_user == @parent_child.parent.user && @parent_child.parent_status < 5 %>
                     <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
                   <% end %>

@@ -2,7 +2,7 @@ class ParentChildrenController < ApplicationController
   before_action :set_parent_child, only: [:show, :update]
   before_action :become_deadline, only: [:create]
   before_action :set_parent, except: [:update, :show]
-  before_action :user_check
+  before_action :user_check, except: [:create]
 
   def show
   end

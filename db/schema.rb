@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20161213173716) do
     t.string   "author",     limit: 255
     t.string   "image",      limit: 255
     t.integer  "status",     limit: 4
-    t.integer  "pid",        limit: 4
     t.boolean  "exchange",               default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
