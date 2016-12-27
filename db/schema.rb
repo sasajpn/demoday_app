@@ -70,8 +70,9 @@ ActiveRecord::Schema.define(version: 20161213173716) do
   create_table "parent_children", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4
     t.integer  "child_id",   limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.boolean  "done",                 default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "parent_children", ["child_id"], name: "index_parent_children_on_child_id", using: :btree
