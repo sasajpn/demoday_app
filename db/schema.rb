@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 20161213173716) do
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
-  create_table "announces", force: :cascade do |t|
-    t.integer  "book_id",    limit: 4
-    t.date     "start_dat"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "announces", ["book_id"], name: "index_announces_on_book_id", using: :btree
-
   create_table "areas", force: :cascade do |t|
     t.string   "postal_code",   limit: 255
     t.integer  "prefecture_id", limit: 4
@@ -75,16 +66,6 @@ ActiveRecord::Schema.define(version: 20161213173716) do
 
   add_index "children", ["book_id"], name: "index_children_on_book_id", using: :btree
   add_index "children", ["parent_id"], name: "index_children_on_parent_id", using: :btree
-
-  create_table "likes", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "announce_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "likes", ["announce_id"], name: "index_likes_on_announce_id", using: :btree
-  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "parent_children", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4
@@ -160,13 +141,10 @@ ActiveRecord::Schema.define(version: 20161213173716) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "announces", "books"
   add_foreign_key "areas", "prefectures"
   add_foreign_key "books", "users"
   add_foreign_key "children", "books"
   add_foreign_key "children", "parents"
-  add_foreign_key "likes", "announces"
-  add_foreign_key "likes", "users"
   add_foreign_key "parent_children", "children"
   add_foreign_key "parent_children", "parents"
   add_foreign_key "parents", "books"
