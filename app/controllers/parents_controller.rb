@@ -2,6 +2,7 @@ class ParentsController < ApplicationController
   before_action :set_book, only: [:create]
   before_action :set_parent, only: [:show, :update]
   before_action :already_negotiate, only: [:create]
+  before_action :user_check, only: [:show]
 
   def index
     @parents = Parent.not_mine(current_user).within_deadline.order(deadline: :desc).page(params[:page])
@@ -39,8 +40,11 @@ class ParentsController < ApplicationController
 
   def already_negotiate
     @book = Book.find(params[:book_id])
-    if @book.already_negotiate?
-      redirect_to user_url(current_user), notice: "すでに取引中です。"
-    end
+    redirect_to user_url(current_user), notice: "すでに取引中です。" if @book.already_negotiate?
+  end
+
+  def user_check
+    @user = Parent.find(params[:id]).user
+    redirect_to user_url(current_user), notice: "そのページはご利用いだだけません" unless current_user == @user
   end
 end

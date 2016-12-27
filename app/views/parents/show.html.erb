@@ -1,70 +1,55 @@
 <section class="main-container">
   <div class="container">
-		<div class="row grid-space-10">
-		  <% if @parent.children.any? %>
-				<% if @parent.parent_child.blank? %>
-			    <% @parent.children.each do |child| %>
-		        <div class="col-sm-6 col-md-3">
-		          <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
-		            <div class="overlay-container overlay-visible">
-		            <%= image_tag('blog-1.jpg') %>
-		            </div>
-		            <div class="body">
-		              <h3 class="margin-clear"><%= child.book.title %></h3>
-		              <small><%= child.book.author %></small>
-									<p><%= child.recommend if child.recommend? %></p>
-		              <div class="separator mt-10"></div>
-									<%= render partial: 'parent_children/form', locals: { parent: @parent, parent_child: @parent.build_parent_child, child: child } %>
-		            </div>
-		          </div>
-		        </div>
-			    <% end %>
-				<% else %>
-					<p><%= @parent.parent_child.child.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しました！</p>
-					<%= link_to parent_child_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>こちらから取引を開始してください！ <i class="fa fa-check"></i><% end %>
-				<% end %>
-		  <% else %>
-				<p>まだ誰からもほしいね！をもらっていません</p>
-		  <% end %>
-		</div>
-	</div>
-</section>
-
-<div class="row grid-space-10">
-  <% if @parent.children.any? %>
-    <% if @parent.parent_child.blank? %>
-      <% @parent.children.each do |child| %>
+    <div class="row">
+      <div class="row grid-space-10">
         <div class="col-sm-6 col-md-3">
           <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
             <div class="overlay-container overlay-visible">
-              <%= image_tag(parent.image, style: "width: 276px; height: 350px;") unless child.image.blank? %>
-              <%= image_tag('no-image.png') if child.image.blank? %>
+              <%= image_tag(@parent.image, style: "width: 283.5px; height: 350px;") unless @parent.image.blank? %>
+              <%= image_tag('no-image.png') if @parent.image.blank? %>
               <div class="overlay-bottom">
-                <p class="lead margin-clear"><%= child.title %></p>
-                <small><%= child.author %></small>
+                <p class="lead margin-clear"><%= @parent.title %></p>
+                <small><%= @parent.author %></small>
                 <hr />
-                <div class="label"><%= parent.children.size %>人がほしいね！を押しました</div>
-                <br />
-                <% if parent.children.where(book_id: current_user.books).blank? %>
-                  <% if @books.blank? %>
-                    <span class="label">交渉に出せる本がありません</span>
-                    <%= link_to new_user_book_path(current_user), class: "btn btn-sm btn-success" do %>
-                      マイブックの登録 <i class="fa fa-arrow-right"></i>
-                    <% end %>
-                  <% else %>
-                    <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-sm" %>
-                  <% end %>
-                <% else %>
-                  <% @child = parent.children.where(book_id: current_user.books).first %>
-                  <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-sm",
-                     method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
-                <% end %>
-                <h5 class="label"><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %>まで</h5>
+                <h5 class="label"><%= @parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %>まで</h5>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
+      </div>
+      <div class="separator-2"></div>
+      <div class="image-box style-3 mb-20 shadow bordered light-gray-bg">
+        <div class="row grid-space-0">
+          <% if @parent.children.any? %>
+            <% if @parent.parent_child.blank? %>
+              <% @parent.children.each do |child| %>
+                <div class="col-md-3">
+                  <div class="overlay-container">
+                    <%= image_tag(child.image, style: "width: 250px; height: 350px;") unless child.image.blank? %>
+                    <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") if child.image.blank? %>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="body">
+                    <div class="pv-30 visible-lg"></div>
+                    <h4><%= child.title %></h4>
+                    <p class="small mb-10"><%= child.author %></p>
+                    <div class="label label-default"><%= child.status %></div>
+                    <div class="separator-2"></div>
+                    <p><%= child.recommend if child.recommend? %></p>
+                    <%= render partial: 'parent_children/form', locals: { parent: @parent, parent_child: @parent.build_parent_child, child: child } %>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <p><%= @parent.parent_child.child.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しました！</p>
+              <%= link_to parent_child_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>こちらから取引を開始してください！ <i class="fa fa-check"></i><% end %>
+            <% end %>
+          <% else %>
+            <p>まだ誰からもほしいね！をもらっていません</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
