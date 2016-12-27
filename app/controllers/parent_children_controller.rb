@@ -2,6 +2,7 @@ class ParentChildrenController < ApplicationController
   before_action :set_parent_child, only: [:show, :update]
   before_action :become_deadline, only: [:create]
   before_action :set_parent, except: [:update, :show]
+  before_action :user_check
 
   def show
   end
@@ -37,5 +38,12 @@ class ParentChildrenController < ApplicationController
     if @parent.deadline < Time.now()
       redirect_to parent_url(@parent), notice: "その本の取引は終了しています"
     end
+  end
+
+  def user_check
+    @parent_child = ParentChild.find(params[:id])
+    @parent = @parent_child.parent.user
+    @child = @parent_child.child.user
+    redirect_to user_url(current_user), notice: "そのページはご利用いだだけません" unless current_user == @parent || current_user == @child
   end
 end

@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :children, through: :books
   has_many :addresses, dependent: :destroy
 
-  has_one :user_animal
+  has_one :user_animal, dependent: :destroy
 
   validates :birthday,
     presence: true

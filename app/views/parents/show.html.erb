@@ -34,7 +34,7 @@
                     <div class="pv-30 visible-lg"></div>
                     <h4><%= child.title %></h4>
                     <p class="small mb-10"><%= child.author %></p>
-                    <div class="label label-default"><%= child.status %></div>
+                    <div class="label label-default"><%= child.book.status %></div>
                     <div class="separator-2"></div>
                     <p><%= child.recommend if child.recommend? %></p>
                     <%= render partial: 'parent_children/form', locals: { parent: @parent, parent_child: @parent.build_parent_child, child: child } %>
@@ -42,7 +42,12 @@
                 </div>
               <% end %>
             <% else %>
-              <p><%= @parent.parent_child.child.user.username %>さんの<%= @parent.parent_child.child.book.title %>と交渉が成立しました！</p>
+              <div class="user-info">
+                <%= image_tag(user_icon(@parent.child.user.animal_of_user), size: "40x40", align: "middle") %>
+                <span><%= @parent.child.user.username %> (<%= @parent.child.user.animal_of_user %>)さんの</span>
+                <span class="label label-default"><%= @parent.child.book.title %></span>
+                <span>と交渉が成立しました。</span>
+              </div>
               <%= link_to parent_child_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>こちらから取引を開始してください！ <i class="fa fa-check"></i><% end %>
             <% end %>
           <% else %>
