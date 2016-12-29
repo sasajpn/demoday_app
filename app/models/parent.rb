@@ -15,7 +15,7 @@
 class Parent < ActiveRecord::Base
   has_many :children, dependent: :destroy
 
-  has_one :parent_child
+  has_one :parent_child, dependent: :destroy
   has_one :child, through: :parent_child
 
   belongs_to :book

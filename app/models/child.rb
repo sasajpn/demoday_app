@@ -13,7 +13,7 @@
 #
 
 class Child < ActiveRecord::Base
-  has_one :parent_child
+  has_one :parent_child, dependent: :destroy
   has_one :dealer, through: :parent_child, source: :parent
 
   belongs_to :book
