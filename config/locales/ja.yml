@@ -1,6 +1,6 @@
 ---
 ja:
-  enum:
+  enums:
     book:
       status:
         very_good: とても良い
@@ -20,6 +20,30 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      address:
+        given_name: 名
+        family_name: 性
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        municipality: 市町村
+        street: 番地
+        building: 建物名
+      book:
+        title: 題名
+        author: 著者名
+        status: 本の状態
+      child:
+        reccomend: 推薦文
+      evaluation:
+        level: 評価レベル
+      parent:
+        deadline: 期限
+      user:
+        username: ユーザ名
+        email: メールアドレス
+        encrypted_password: パスワード
+        birthday: 誕生日
   date:
     abbr_day_names:
     - 日
