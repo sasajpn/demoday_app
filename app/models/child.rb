@@ -45,6 +45,12 @@ class Child < ActiveRecord::Base
     end
   end
 
+  def create_history
+    if status == 3 && dealer.status == 3
+      History.create(book_id: book.id, exchange_id: dealer.book.id, prefecture: Address.find(dealer.address_id).prefecture)
+    end
+  end
+
   def exchange_book
     if status == 3 && dealer.status == 3
       book.update(user_id: dealer.user.id)
