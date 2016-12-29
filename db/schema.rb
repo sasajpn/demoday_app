@@ -88,15 +88,14 @@ ActiveRecord::Schema.define(version: 20161229120020) do
   add_index "evaluations", ["user_id"], name: "index_evaluations_on_user_id", using: :btree
 
   create_table "histories", force: :cascade do |t|
-    t.integer  "book_id",       limit: 4
-    t.integer  "prefecture_id", limit: 4
-    t.integer  "exchange_id",   limit: 4
+    t.integer  "book_id",     limit: 4
+    t.integer  "exchange_id", limit: 4
+    t.string   "prefecture",  limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
   add_index "histories", ["book_id"], name: "index_histories_on_book_id", using: :btree
-  add_index "histories", ["prefecture_id"], name: "index_histories_on_prefecture_id", using: :btree
 
   create_table "parent_children", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4
@@ -180,7 +179,6 @@ ActiveRecord::Schema.define(version: 20161229120020) do
   add_foreign_key "deals", "parents"
   add_foreign_key "evaluations", "users"
   add_foreign_key "histories", "books"
-  add_foreign_key "histories", "prefectures"
   add_foreign_key "parent_children", "children"
   add_foreign_key "parent_children", "parents"
   add_foreign_key "parents", "books"

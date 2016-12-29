@@ -30,6 +30,7 @@ class Parent < ActiveRecord::Base
 
   after_update :trading_done
   after_update :create_performance
+  after_update :create_history
   after_update :exchange_book
 
   def trading_done
@@ -37,20 +38,21 @@ class Parent < ActiveRecord::Base
   end
 
   def create_performance
-    if status == 3 && child.status == 3
+    if status == 4 && child.status == 4
       Performance.create(user_id: user.id, book_id: book.id)
       Performance.create(user_id: child.user.id, book_id: child.book.id)
     end
   end
 
   def create_history
-    if status == 3 && child.status == 3
+    if status == 4 && child.status == 4
       History.create(book_id: book.id, exchange_id: child.book.id, prefecture: Address.find(child.address_id).prefecture)
+      History.create(book_id: child.book.id, exchange_id: book.id, prefecture: Address.find(address_id).prefecture)
     end
   end
 
   def exchange_book
-    if status == 3 && child.status == 3
+    if status == 4 && child.status == 4
       book.update(user_id: child.user.id)
       child.book.update(user_id: parent.user.id)
     end
