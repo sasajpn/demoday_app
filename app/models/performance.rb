@@ -14,4 +14,5 @@
 class Performance < ActiveRecord::Base
   belongs_to :user
   belongs_to :book
+  delegate :title, :author, :image, to: :book
 end

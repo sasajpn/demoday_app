@@ -14,7 +14,7 @@
 #
 
 class Book < ActiveRecord::Base
-  has_many :histories
+  has_many :histories, dependent: :destroy
 
   has_one :parent, dependent: :destroy
   has_one :child, dependent: :destroy
