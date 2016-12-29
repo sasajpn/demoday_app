@@ -40,10 +40,10 @@
                 <% if @parent_child.parent_status > 3 && @parent_child.child_status > 3 %>
                   <p>これで今回の取引は終了です！</p>
                   <% if current_user == @parent_child.parent.user && @parent_child.parent_status < 5 %>
-                    <%= link_to "最後に、こちらから相手方を評価することができます", edit_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
+                    <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_evaluation_path(@parent_child), class: "btn btn-default" %>
                   <% end %>
                   <% if current_user == @parent_child.child.user && @parent_child.child_status < 5 %>
-                    <%= link_to "最後に、こちらから相手方を評価することができます", edit_parent_child_performance_path(@parent_child), class: "btn btn-default" %>
+                    <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_evaluation_path(@parent_child), class: "btn btn-default" %>
                   <% end %>
                 <% else %>
                   <p class="step-warning">まだ取引が終了していません。</p>

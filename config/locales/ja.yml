@@ -7,8 +7,8 @@ ja:
         good: 良い
         bad: 悪い
         very_bad: とても悪い
-    performance:
-      evaluate:
+    evaluation:
+      level:
         very_good: とても良い
         good: 良い
         bad: 悪い

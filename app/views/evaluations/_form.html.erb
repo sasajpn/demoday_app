@@ -1,0 +1,6 @@
+<%= bootstrap_form_for [parent_child, evaluation] do |f| %>
+  <%= f.select :level, Evaluation.levels_i18n.invert %>
+  <%= f.hidden_field :evaluator, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: partner(parent_child) %>
+  <%= f.submit %>
+<% end %>

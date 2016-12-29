@@ -20,6 +20,6 @@ Rails.application.routes.draw do
 
   resources :parents, only: [:index, :show]
   resources :parent_children, only: [:show] do
-    resources :performances, only: [:edit, :update]
+    resources :evaluations, only: [:new, :create]
   end
 end

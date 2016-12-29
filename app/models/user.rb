@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :children, through: :books, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :performances, dependent: :destroy
-  has_many :evaluates, dependent: :destroy
+  has_many :evaluations, dependent: :destroy
 
   has_one :user_animal, dependent: :destroy
 

@@ -39,14 +39,14 @@ class Child < ActiveRecord::Base
   end
 
   def create_performance
-    if status > 3 && dealer.status > 3
+    if status == 3 && dealer.status == 3
       Performance.create(user_id: user.id, book_id: book.id)
       Performance.create(user_id: dealer.user.id, book_id: dealer.book.id)
     end
   end
 
   def exchange_book
-    if status > 3 && dealer.status > 3
+    if status == 3 && dealer.status == 3
       book.update(user_id: dealer.user.id)
       dealer.book.update(user_id: user.id)
     end

@@ -37,14 +37,14 @@ class Parent < ActiveRecord::Base
   end
 
   def create_performance
-    if status > 3 && child.status > 3
+    if status == 3 && child.status == 3
       Performance.create(user_id: user.id, book_id: book.id)
       Performance.create(user_id: child.user.id, book_id: child.book.id)
     end
   end
 
   def exchange_book
-    if status > 3 && child.status > 3
+    if status == 3 && child.status == 3
       book.update(user_id: child.user.id)
       child.book.update(user_id: parent.user.id)
     end

@@ -14,7 +14,4 @@
 class Performance < ActiveRecord::Base
   belongs_to :user
   belongs_to :book
-
-  enum evaluate: { very_good: 3, good: 2, bad: 1, very_bad: 0 }
-
 end
