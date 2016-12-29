@@ -28,6 +28,8 @@ class Address < ActiveRecord::Base
 
 
   def display_address
-    family_name + given_name + ' ' + '〒' + postal_code.to_s + ' ' + prefecture + municipality + street + building
+    name = [family_name, given_name].compact.join
+    address = [postal_code, prefecture, municipality, street, building].compact.join
+    [name, address].join(" ")
   end
 end

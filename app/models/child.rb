@@ -28,12 +28,9 @@ class Child < ActiveRecord::Base
     length: { maximum: 140 }
   # enum status: { negotiate: 0, confirm: 1, notice: 2, send: 3, recieve: 4 }
 
-  after_update :book_exchanged
-  after_update :trading_done
+  scope :until_trading, -> { joins(:parent_child).merge(ParentChild.where(done: false)) }
 
-  def book_exchanged
-    book.update(exchange: true) if status > 3
-  end
+  after_update :trading_done
 
   def trading_done
     parent_child.update(done: true) if status > 3 && dealer.status > 3

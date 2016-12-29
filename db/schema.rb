@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213173716) do
+ActiveRecord::Schema.define(version: 20161229025953) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
@@ -40,12 +40,12 @@ ActiveRecord::Schema.define(version: 20161213173716) do
   add_index "areas", ["prefecture_id"], name: "index_areas_on_prefecture_id", using: :btree
 
   create_table "books", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.string   "title",      limit: 255
-    t.string   "author",     limit: 255
-    t.string   "image",      limit: 255
-    t.integer  "status",     limit: 4
-    t.boolean  "exchange",               default: false
+    t.integer  "user_id",        limit: 4
+    t.string   "title",          limit: 255
+    t.string   "author",         limit: 255
+    t.string   "image",          limit: 255
+    t.integer  "status",         limit: 4
+    t.integer  "exchange_times", limit: 4,   default: 0
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
@@ -65,6 +65,28 @@ ActiveRecord::Schema.define(version: 20161213173716) do
 
   add_index "children", ["book_id"], name: "index_children_on_book_id", using: :btree
   add_index "children", ["parent_id"], name: "index_children_on_parent_id", using: :btree
+
+  create_table "deals", force: :cascade do |t|
+    t.integer  "parent_id",  limit: 4
+    t.integer  "child_id",   limit: 4
+    t.boolean  "done",                 default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "deals", ["child_id"], name: "index_deals_on_child_id", using: :btree
+  add_index "deals", ["parent_id"], name: "index_deals_on_parent_id", using: :btree
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "book_id",       limit: 4
+    t.integer  "prefecture_id", limit: 4
+    t.integer  "exchange_id",   limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "histories", ["book_id"], name: "index_histories_on_book_id", using: :btree
+  add_index "histories", ["prefecture_id"], name: "index_histories_on_prefecture_id", using: :btree
 
   create_table "parent_children", force: :cascade do |t|
     t.integer  "parent_id",  limit: 4
@@ -91,13 +113,14 @@ ActiveRecord::Schema.define(version: 20161213173716) do
 
   create_table "performances", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
+    t.integer  "book_id",    limit: 4
     t.integer  "evaluator",  limit: 4
     t.integer  "evaluate",   limit: 4
-    t.text     "comment",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
+  add_index "performances", ["book_id"], name: "index_performances_on_book_id", using: :btree
   add_index "performances", ["user_id"], name: "index_performances_on_user_id", using: :btree
 
   create_table "prefectures", force: :cascade do |t|
@@ -145,9 +168,14 @@ ActiveRecord::Schema.define(version: 20161213173716) do
   add_foreign_key "books", "users"
   add_foreign_key "children", "books"
   add_foreign_key "children", "parents"
+  add_foreign_key "deals", "children"
+  add_foreign_key "deals", "parents"
+  add_foreign_key "histories", "books"
+  add_foreign_key "histories", "prefectures"
   add_foreign_key "parent_children", "children"
   add_foreign_key "parent_children", "parents"
   add_foreign_key "parents", "books"
+  add_foreign_key "performances", "books"
   add_foreign_key "performances", "users"
   add_foreign_key "user_animals", "users"
 end

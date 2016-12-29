@@ -37,4 +37,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to user_url(current_user), notice: "そのページはご利用いだだけません" unless current_user == @user
   end
+
+  def destroy_check
+    if current_user.parents.until_trading.present? || current_user.children.until_trading.present?
+      redirect_to user_url(current_user), notice: "終了していない取引があります"
+    end
+  end
 end

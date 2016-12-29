@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :books, dependent: :destroy
-  has_many :parents, through: :books
-  has_many :children, through: :books
+  has_many :parents, through: :books, dependent: :destroy
+  has_many :children, through: :books, dependent: :destroy
   has_many :addresses, dependent: :destroy
 
   has_one :user_animal, dependent: :destroy
@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   def animal_of_user
     Animal.find(user_animal.animal_id).name
   end
+
 
   def convert_animal
     Animal.find(num_of_plus_day).id

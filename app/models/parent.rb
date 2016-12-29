@@ -25,14 +25,10 @@ class Parent < ActiveRecord::Base
   scope :within_deadline, -> { where('deadline > ?', Time.now()) }
   scope :without_deadline, -> { where('deadline < ?', Time.now()) }
   scope :not_mine, ->(user) { where.not(book_id: user.books) }
+  scope :until_trading, -> { joins(:parent_child).merge(ParentChild.where(done: false)) }
   # scope :want, ->(user) { joins(:children).where(book_id: user.books) }
 
-  after_update :book_exchanged
   after_update :trading_done
-
-  def book_exchanged
-    book.update(exchange: true) if status > 3
-  end
 
   def trading_done
     parent_child.update(done: true) if status > 3 && child.status > 3
