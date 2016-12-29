@@ -74,3 +74,20 @@ body {
 .hidden-link {
   visibility: hidden;
 }
+
+.book-image {
+  position: relative;
+
+  .book-info {
+    position: absolute;
+    bottom: 0px;
+    color: #FFFFFF;
+    background: rgba(0,0,0,.6);
+    width: 100%;
+    text-align: center;
+
+    h3 {
+      color: #FFFFFF;
+    }
+  }
+}

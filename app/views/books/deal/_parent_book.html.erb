@@ -1,24 +1,23 @@
 <div class="tab-pane active" id="pill-1">
   <div class="row masonry-grid-fitrows grid-space-10" style="position: relative; height: 1070px;">
     <% current_user.parents.each do |parent| %>
-      <% if parent.book.exchange == false %>
-        <% if parent.parent_child.blank? %>
-        	<div class="col-md-3 col-sm-6 masonry-grid-item" style="position: absolute; left: 0px; top: 0px;">
-        		<div class="listing-item white-bg bordered mb-20">
-        			<div class="overlay-container">
-                <%= image_tag(parent.image, style: "width: 250px; height: 350px;") unless parent.image.blank? %>
-                <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") if parent.image.blank? %>
-        			</div>
-        			<div class="body">
-                <h3><%= parent.title.truncate(15) %></h3>
-                <small><%= parent.author.truncate(15) %></small>
-        				<div class="elements-list clearfix">
-        					<%= link_to parent_path(parent), class:"btn btn-gray" do %>ほしいね！を見る <i class="fa fa-folder-open pl-10"></i><% end %>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        <% end %>
+      <% if parent.parent_child.blank? %>
+      	<div class="col-md-3 col-sm-6 masonry-grid-item" style="position: absolute; left: 0px; top: 0px;">
+      		<div class="listing-item white-bg bordered mb-20 book-image">
+      			<div class="overlay-container">
+              <%= image_tag(parent.image, style: "width: 250px; height: 350px;") unless parent.image.blank? %>
+              <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") if parent.image.blank? %>
+      			</div>
+      			<div class="book-info">
+              <h3><%= parent.title.truncate(15) %></h3>
+              <small><%= parent.author.truncate(15) %></small>
+              <hr />
+      				<div class="elements-list clearfix">
+      					<%= link_to parent_path(parent), class:"btn btn-gray" do %>ほしいね！を見る <i class="fa fa-folder-open pl-10"></i><% end %>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
       <% end %>
     <% end %>
   </div>

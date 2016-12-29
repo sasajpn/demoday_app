@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229025953) do
+ActiveRecord::Schema.define(version: 20161229114838) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20161229025953) do
   add_index "deals", ["child_id"], name: "index_deals_on_child_id", using: :btree
   add_index "deals", ["parent_id"], name: "index_deals_on_parent_id", using: :btree
 
+  create_table "evaluates", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "evaluator",  limit: 4
+    t.integer  "level",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "evaluates", ["user_id"], name: "index_evaluates_on_user_id", using: :btree
+
   create_table "histories", force: :cascade do |t|
     t.integer  "book_id",       limit: 4
     t.integer  "prefecture_id", limit: 4
@@ -114,8 +124,6 @@ ActiveRecord::Schema.define(version: 20161229025953) do
   create_table "performances", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "book_id",    limit: 4
-    t.integer  "evaluator",  limit: 4
-    t.integer  "evaluate",   limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
@@ -170,6 +178,7 @@ ActiveRecord::Schema.define(version: 20161229025953) do
   add_foreign_key "children", "parents"
   add_foreign_key "deals", "children"
   add_foreign_key "deals", "parents"
+  add_foreign_key "evaluates", "users"
   add_foreign_key "histories", "books"
   add_foreign_key "histories", "prefectures"
   add_foreign_key "parent_children", "children"

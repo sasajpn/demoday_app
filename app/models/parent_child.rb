@@ -11,17 +11,11 @@
 
 class ParentChild < ActiveRecord::Base
   belongs_to :parent
+  delegate :status, to: :parent, prefix: :parent
   belongs_to :child
+  delegate :status, to: :child, prefix: :child
 
   after_create :destroy_children_of_parent
-
-  def parent_status
-    parent.status
-  end
-
-  def child_status
-    child.status
-  end
 
   def destroy_children_of_parent
     @children = parent.children.where.not(id: child)

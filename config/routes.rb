@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     resources :books, only: [:new, :create, :destroy], shallow: true do
       resources :parents, only: [:create, :update], shallow: true do
         resources :children, only: [:new, :create, :update, :destroy], shallow: true
-        resources :parent_children, only: [:create, :update], shallow: true do
-          resources :performances, only: [:new, :create]
-        end
+        resources :parent_children, only: [:create, :update], shallow: true
       end
     end
   end
 
   resources :parents, only: [:index, :show]
-  resources :parent_children, only: [:show]
+  resources :parent_children, only: [:show] do
+    resources :performances, only: [:edit, :update]
+  end
 end
