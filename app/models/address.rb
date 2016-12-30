@@ -26,10 +26,15 @@ class Address < ActiveRecord::Base
     presence: true,
     length: { maximum: 64 }
 
+  def address_name
+    name = [family_name, given_name].compact.join
+  end
+
+  def address_detail
+    address = [postal_code, prefecture, municipality, street, building].compact.join
+  end
 
   def display_address
-    name = [family_name, given_name].compact.join
-    address = [postal_code, prefecture, municipality, street, building].compact.join
-    [name, address].join(" ")
+    [address_name, address_detail].join(" ")
   end
 end

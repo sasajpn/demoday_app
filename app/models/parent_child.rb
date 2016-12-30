@@ -23,10 +23,7 @@ class ParentChild < ActiveRecord::Base
   end
 
   def update_status(user)
-    if user == parent.user
-      parent.update(status: 5)
-    elsif user == child.user
-      child.update(status: 5)
-    end
+    parent.update(status: 5) if user == parent.user
+    child.update(status: 5) if user == child.user
   end
 end

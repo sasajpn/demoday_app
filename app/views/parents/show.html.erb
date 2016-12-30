@@ -41,8 +41,8 @@
       <% else %>
         <div class="user-info">
           <%= image_tag(user_icon(@parent.child.user.animal_of_user), size: "40x40", align: "middle") %>
-          <span><%= @parent.child.user.username %> (<%= @parent.child.user.animal_of_user %>)さんの</span>
-          <span class="label label-default"><%= @parent.child.book.title %></span>
+          <span><%= @parent.partner_username %> (<%= @parent.child.user.animal_of_user %>)さんの</span>
+          <span class="label label-default"><%= @parent.child_book_title %></span>
           <span>と交渉が成立しました。</span>
         </div>
         <%= link_to parent_child_path(@parent.parent_child), class: "btn btn-animated btn-success" do %>こちらから取引を開始してください！ <i class="fa fa-check"></i><% end %>
