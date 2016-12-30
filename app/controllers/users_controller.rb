@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'users/application'
+
   before_action :authenticate_user!
   before_action :user_check, except: [:get_area]
 

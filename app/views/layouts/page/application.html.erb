@@ -17,18 +17,19 @@
     <%= render partial: 'shared/header' %>
   </div>
 
-  <section class="main-container">
-    <div class="container">
+  <div class="page-wrapper">
+    <section class="light-gray-bg pv-30 clearfix">
       <% flash.each do |type, msg| %>
         <div class="alert alert-<%= type %>">
           <%= msg %>
         </div>
       <% end %>
-      <div class="row">
-        <%= yield %>
+      <div class="container">
+        <div class="row">
+          <%= yield %>
+        </div>
       </div>
-    </div>
-  </section>
-  
+    </section>
+  </div>
 </body>
 </html>

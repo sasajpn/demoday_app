@@ -1,58 +1,50 @@
-<div class="page-wrapper">
-  <section class="main-container">
-    <div class="container">
-      <div class="row">
-        <div class="main col-md-12">
-          <div class="process">
-						<ul class="nav nav-pills" role="tablist">
-              <li class="active"><a href="#pill-pr-1" role="tab" data-toggle="tab" title="Step 1">Step 1：取引成立確認</a></li>
-              <li><a href="#pill-pr-2" role="tab" data-toggle="tab" title="Step 2">Step 2：住所連絡</a></li>
-              <li><a href="#pill-pr-3" role="tab" data-toggle="tab" title="Step 3">Step 3：配送連絡</a></li>
-              <li><a href="#pill-pr-4" role="tab" data-toggle="tab" title="Step 4">Step 4：受け取り連絡</a></li>
-              <li><a href="#pill-pr-5" role="tab" data-toggle="tab" title="Step 1">取引終了</a></li>
-						</ul>
-						<div class="tab-content clear-style">
-							<div class="tab-pane active" id="pill-pr-1">
-                <%= render partial: 'step1', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
-							</div>
-							<div class="tab-pane" id="pill-pr-2">
-                <% if @parent_child.parent_status > 0 && @parent_child.child_status > 0 %>
-                  <%= render partial: 'step2', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
-                <% else %>
-                  <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
-                <% end %>
-							</div>
-              <div class="tab-pane" id="pill-pr-3">
-                <% if @parent_child.parent_status > 1 && @parent_child.child_status > 1 %>
-                  <%= render partial: 'step3', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
-                <% else %>
-                  <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
-                <% end %>
-							</div>
-              <div class="tab-pane" id="pill-pr-4">
-                <% if @parent_child.parent_status > 2 && @parent_child.child_status > 2 %>
-                  <%= render partial: 'step4', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
-                <% else %>
-                  <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
-                <% end %>
-              </div>
-              <div class="tab-pane" id="pill-pr-5">
-                <% if @parent_child.parent_status > 3 && @parent_child.child_status > 3 %>
-                  <p>これで今回の取引は終了です！</p>
-                  <% if current_user == @parent_child.parent.user && @parent_child.parent_status < 5 %>
-                    <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_evaluation_path(@parent_child), class: "btn btn-default" %>
-                  <% end %>
-                  <% if current_user == @parent_child.child.user && @parent_child.child_status < 5 %>
-                    <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_evaluation_path(@parent_child), class: "btn btn-default" %>
-                  <% end %>
-                <% else %>
-                  <p class="step-warning">まだ取引が終了していません。</p>
-                <% end %>
-              </div>
-            </div>
-					</div>
-        </div>
+<div class="main col-md-12">
+  <div class="process">
+		<ul class="nav nav-pills" role="tablist">
+      <li class="active"><a href="#pill-pr-1" role="tab" data-toggle="tab" title="Step 1">Step 1：取引成立確認</a></li>
+      <li><a href="#pill-pr-2" role="tab" data-toggle="tab" title="Step 2">Step 2：住所連絡</a></li>
+      <li><a href="#pill-pr-3" role="tab" data-toggle="tab" title="Step 3">Step 3：配送連絡</a></li>
+      <li><a href="#pill-pr-4" role="tab" data-toggle="tab" title="Step 4">Step 4：受け取り連絡</a></li>
+      <li><a href="#pill-pr-5" role="tab" data-toggle="tab" title="Step 1">取引終了</a></li>
+		</ul>
+		<div class="tab-content clear-style">
+			<div class="tab-pane active" id="pill-pr-1">
+        <%= render partial: 'step1', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
+			</div>
+			<div class="tab-pane" id="pill-pr-2">
+        <% if @parent_child.parent_status > 0 && @parent_child.child_status > 0 %>
+          <%= render partial: 'step2', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
+        <% else %>
+          <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
+        <% end %>
+			</div>
+      <div class="tab-pane" id="pill-pr-3">
+        <% if @parent_child.parent_status > 1 && @parent_child.child_status > 1 %>
+          <%= render partial: 'step3', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
+        <% else %>
+          <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
+        <% end %>
+			</div>
+      <div class="tab-pane" id="pill-pr-4">
+        <% if @parent_child.parent_status > 2 && @parent_child.child_status > 2 %>
+          <%= render partial: 'step4', locals: { parent: @parent_child.parent, child: @parent_child.child } %>
+        <% else %>
+          <p class="step-warning">こちらのStepにはまだ進むことができません。</p>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="pill-pr-5">
+        <% if @parent_child.parent_status > 3 && @parent_child.child_status > 3 %>
+          <p>これで今回の取引は終了です！</p>
+          <% if current_user == @parent_child.parent.user && @parent_child.parent_status < 5 %>
+            <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_evaluation_path(@parent_child), class: "btn btn-default" %>
+          <% end %>
+          <% if current_user == @parent_child.child.user && @parent_child.child_status < 5 %>
+            <%= link_to "最後に、こちらから相手方を評価することができます", new_parent_child_evaluation_path(@parent_child), class: "btn btn-default" %>
+          <% end %>
+        <% else %>
+          <p class="step-warning">まだ取引が終了していません。</p>
+        <% end %>
       </div>
     </div>
-  </section>
+	</div>
 </div>

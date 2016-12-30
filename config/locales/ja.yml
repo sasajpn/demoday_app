@@ -34,7 +34,7 @@ ja:
         author: 著者名
         status: 本の状態
       child:
-        reccomend: 推薦文
+        recommend: 推薦文
       evaluation:
         level: 評価レベル
       parent:

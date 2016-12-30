@@ -1,39 +1,33 @@
-<section class="main-container">
-	<div class="container">
-		<div class="row">
-			<div class="main col-md-12">
-				<h1 class="page-title">本の取引履歴</h1>
-				<div class="separator-2"></div>
-				<div class="timeline clearfix">
-          <% if @histories.any? %>
-            <% @histories.each.with_index(1) do |history, i| %>
-              <% style = "pull-right" if i.even? %>
-              <% book = Book.find(history.exchange_id) %>
-      					<div class="timeline-item <%= style %>">
-      						<article class="blogpost shadow object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
-                    <% pull = "pull-right" if i.odd? %>
-                    <% pull = "pull-left" if i.even? %>
-                    <div class="row grid-space-10 <%= pull %>">
-                      <div class="image-box team-member style-2 shadow bordered mb-20 text-center book-image">
-                        <div class="overlay-container overlay-visible">
-                          <%= image_tag(book.image, style: "width: 250px; height: 350px;") if book.image? %>
-                          <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") unless book.image? %>
-                          <div class="book-info">
-                            <p class="lead margin-clear"><%= book.title %></p>
-                            <small><%= book.author %></small>
-                            <p>との取引が成立！</p>
-                            <hr />
-                            <p><%= history.prefecture %>へ！</p>
-                          </div>
-                        </div>
-                      </div>
+<div class="main col-md-12">
+	<h1 class="page-title">本の取引履歴</h1>
+	<div class="separator-2"></div>
+	<div class="timeline clearfix">
+    <% if @histories.any? %>
+      <% @histories.each.with_index(1) do |history, i| %>
+        <% style = "pull-right" if i.even? %>
+        <% book = Book.find(history.exchange_id) %>
+					<div class="timeline-item <%= style %>">
+						<article class="blogpost shadow object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
+              <% pull = "pull-right" if i.odd? %>
+              <% pull = "pull-left" if i.even? %>
+              <div class="row grid-space-10 <%= pull %>">
+                <div class="image-box team-member style-2 shadow bordered mb-20 text-center book-image">
+                  <div class="overlay-container overlay-visible">
+                    <%= image_tag(book.image, style: "width: 250px; height: 350px;") if book.image? %>
+                    <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") unless book.image? %>
+                    <div class="book-info">
+                      <p class="lead margin-clear"><%= book.title %></p>
+                      <small><%= book.author %></small>
+                      <p>との取引が成立！</p>
+                      <hr />
+                      <p><%= history.prefecture %>へ！</p>
                     </div>
-      						</article>
-      					</div>
-            <% end %>
-          <% end %>
-				</div>
-			</div>
-		</div>
+                  </div>
+                </div>
+              </div>
+						</article>
+					</div>
+      <% end %>
+    <% end %>
 	</div>
-</section>
+</div>
