@@ -1,11 +1,1 @@
-<section class="main-container">
-  <div class="container">
-    <div class="row">
-      <div class="main col-md-8 col-md-offset-2">
-        <h1 class="page-title">お届け先の変更</h1>
-        <div class="separator-2"></div>
-        <%= render partial: 'form', locals: { user: current_user, address: @address, prefectures: Prefecture.all } %>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render 'address_part', address: @address %>

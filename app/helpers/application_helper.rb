@@ -26,6 +26,17 @@ module ApplicationHelper
     end
   end
 
+  # address
+
+  def new_or_edit
+    case controller.action_name
+    when "new"
+      "お届け先の登録"
+    when "edit"
+      "お届け先の変更"
+    end
+  end
+
   # animal
 
   def user_icon(animal)
