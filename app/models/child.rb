@@ -22,7 +22,9 @@ class Child < ActiveRecord::Base
 
   belongs_to :parent, counter_cache: true
   has_one :parent_book, through: :parent, source: :book
+  delegate :title, :author, :image, to: :parent_book, prefix: :parent_book
   has_one :partner, through: :parent_book, source: :user
+  delegate :username,  to: :partner, prefix: :partner
 
   validates :recommend,
     length: { maximum: 140 }

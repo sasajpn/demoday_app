@@ -1,0 +1,3 @@
+module BookDecorator
+
+end

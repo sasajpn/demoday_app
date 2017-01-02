@@ -1,0 +1,26 @@
+<div class="tab-pane <%= add_active(num) %>" id="pill-<%= num %>">
+  <div class="row masonry-grid-fitrows grid-space-10" style="<%= add_style1(num) %>">
+    <% objects.each do |object| %>
+      <% object = object.parent_book if num == 2 %>
+    	<div class="col-md-3 col-sm-6 masonry-grid-item" style="<%= add_style2(num) %>" >
+    		<div class="listing-item white-bg bordered mb-20 book-image">
+    			<div class="overlay-container">
+            <%= image_tag(object.image, style: "width: 250px; height: 350px;") unless object.image.blank? %>
+            <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") if object.image.blank? %>
+    			</div>
+    			<div class="book-info">
+            <h3><%= object.title.truncate(15) %></h3>
+            <small><%= object.author.truncate(15) %></small>
+            <hr />
+    				<div class="elements-list clearfix">
+              <%= link_to "ほしいね！を見る", parent_path(object), class:"btn btn-gray" if num == 1 %>
+              <%= link_to "ほしいね！を取り消す", child_path(object), class: "btn btn-danger",
+                 method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } if num == 2 %>
+               <%= link_to "この本の行方を見る", book_histories_path(performance.book), class:"btn btn-gray" if num == 4 %>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    <% end %>
+  </div>
+</div>

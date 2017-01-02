@@ -21,6 +21,8 @@ gem 'bootstrap_form'
 
 gem 'data-confirm-modal'
 
+gem 'active_decorator'
+
 # Crontab
 gem 'whenever', require: false
 

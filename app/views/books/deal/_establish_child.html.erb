@@ -1,18 +1,1 @@
-<% current_user.children.each do |child| %>
-  <% if child.parent_child.present? && child.status < 4 %>
-    <div class="col-sm-6 col-md-3">
-      <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
-        <div class="overlay-container overlay-visible">
-          <%= image_tag(child.image, style: "width: 250px; height: 350px;") unless child.image.blank? %>
-          <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") if child.image.blank? %>
-        </div>
-        <div class="overlay-bottom">
-          <p class="lead margin-clear"><%= child.title %></p>
-          <small><%= child.author %></small>
-          <hr />
-          <%= link_to parent_child_path(child.parent_child), class:"btn btn-gray" do %>取引を行う <i class="fa fa-check pl-10"></i><% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+<%= render 'books/deal/establish_part', objects: current_user.children %>

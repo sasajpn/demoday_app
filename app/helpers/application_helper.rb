@@ -14,6 +14,20 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  # book
+
+  def add_active(num)
+    "active" if num == 1
+  end
+
+  def add_style1(num)
+    "position: relative; height: 1070px;" if num == 1
+  end
+
+  def add_style2(num)
+    "position: absolute; left: 0px; top: 0px;" if num == 1
+  end
+  
   # parent
 
   # parent_children
