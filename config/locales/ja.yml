@@ -42,7 +42,8 @@ ja:
       user:
         username: ユーザ名
         email: メールアドレス
-        encrypted_password: パスワード
+        password: パスワード
+        password_confirmation: パスワード(確認用)
         birthday: 誕生日
   date:
     abbr_day_names:
