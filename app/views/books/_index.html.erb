@@ -6,17 +6,19 @@
         <ul class="book-list social-links circle small clearfix hidden-xs <%= invisible %>">
           <li class="googleplus"><%= link_to book_path(book), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } do %><i class="fa fa-trash-o"></i><% end %></li>
         </ul>
-        <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
-          <div class="overlay-container overlay-visible">
+        <div class="listing-item white-bg bordered mb-20 book-image">
+          <div class="overlay-container">
             <%= image_tag(book.image, style: "width: 250px; height: 350px;") if book.image? %>
             <%= image_tag('no-image.png', style: "width: 250px; height: 350px;") unless book.image? %>
-            <div class="overlay-bottom">
-              <p class="lead margin-clear"><%= book.title %></p>
-              <small><%= book.author %></small>
-              <% if book.parent.nil? && book.child.nil? %>
-                <hr />
-                <%= render partial: 'parents/form', locals: { book: book, parent: Parent.new } %>
-              <% end %>
+            <div class="book-info">
+              <h3><%= book.title.truncate(15) %></h3>
+              <small><%= book.author.truncate(15) %></small>
+              <hr />
+              <div class="elements-list clearfix">
+                <% if book.parent.nil? && book.child.nil? %>
+                  <%= render partial: 'parents/form', locals: { book: book, parent: Parent.new } %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

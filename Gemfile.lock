@@ -20,7 +20,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_decorator (0.8.0)
     active_hash (1.4.1)
       activesupport (>= 2.2.2)
     activejob (4.2.7)
@@ -317,7 +316,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_decorator
   active_hash
   amazon-ecs
   annotate
@@ -368,4 +366,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.12.5
+   1.13.7

@@ -31,6 +31,7 @@ class Child < ActiveRecord::Base
   # enum status: { negotiate: 0, confirm: 1, notice: 2, send: 3, recieve: 4 }
 
   scope :until_trading, -> { joins(:parent_child).merge(ParentChild.where(done: false)) }
+  scope :agree, -> { joins(:parent_child) }
 
   after_update :trading_done
   after_update :create_performance

@@ -14,7 +14,7 @@
 
 class Parent < ActiveRecord::Base
   has_many :children, dependent: :destroy
-  
+
   has_one :parent_child, dependent: :destroy
   has_one :child, through: :parent_child
   has_one :child_book, through: :child, source: :book
@@ -29,6 +29,7 @@ class Parent < ActiveRecord::Base
   scope :within_deadline, -> { where('deadline > ?', Time.now()) }
   scope :without_deadline, -> { where('deadline < ?', Time.now()) }
   scope :not_mine, ->(user) { where.not(book_id: user.books) }
+  scope :agree, -> { joins(:parent_child) }
   scope :until_trading, -> { joins(:parent_child).merge(ParentChild.where(done: false)) }
 
   after_update :trading_done

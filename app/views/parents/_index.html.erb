@@ -1,32 +1,34 @@
 <div class="row grid-space-10">
   <% object.each do |parent| %>
     <div class="col-sm-6 col-md-3">
-      <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
-        <div class="overlay-container overlay-visible">
+      <div class="isting-item white-bg bordered mb-20 book-image">
+        <div class="overlay-container">
           <%= image_tag(parent.image, style: "width: 276px; height: 350px;") unless parent.image.blank? %>
           <%= image_tag('no-image.png') if parent.image.blank? %>
-          <div class="overlay-bottom">
-            <p class="lead margin-clear"><%= parent.title %></p>
-            <small><%= parent.author %></small>
+          <div class="book-info">
+            <h3><%= parent.title.truncate(15) %></h3>
+            <small><%= parent.author.truncate(15) %></small>
+            <br>
+            <span class="label"><%= parent.status %></span>
             <hr />
-            <% if parent.children.size != 0 %>
-              <div class="label"><%= parent.children.size %>人がほしいね！を押しました</div>
-            <% else %>
-              <div class="label">誰もほしいね！を押していません</div>
-            <% end %>
+            <div class="label">
+              <span class="fa-stack">
+                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                <i class="fa fa-star fa-stack-1x"></i>
+              </span>
+              <%= parent.children.size %>
+            </div>
             <br />
             <% if parent.children.where(book_id: current_user.books).blank? %>
               <% if @books.blank? %>
-                <span class="label">交渉に出せる本がありません</span>
-                <%= link_to new_user_book_path(current_user), class: "btn btn-sm btn-success" do %>
-                  マイブックの登録 <i class="fa fa-arrow-right"></i>
-                <% end %>
+                <span class="label label-danger">交渉に出せる本がありません</span>
               <% else %>
-                <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-sm" %>
+                <%= link_to "ほしいね！", new_parent_child_path(parent), class: "btn btn-primary btn-sm" %>
+                <br>
               <% end %>
             <% else %>
               <% @child = parent.children.where(book_id: current_user.books).first %>
-              <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-sm",
+              <%= link_to "ほしいね！を取り消す", child_path(@child), class: "btn btn-danger btn-sm",
                  method: :delete, data: { confirm: 'ほしいね！を取り消してもよろしいですか？' } %>
             <% end %>
             <h5 class="label"><%= parent.deadline.strftime("%Y年%m月%d日 %H時%M分") %>まで</h5>

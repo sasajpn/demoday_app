@@ -1,14 +1,5 @@
 <div class="main col-md-12">
-  <h1 class="page-title">人気の取引</h1>
-  <div class="separator-2"></div>
-  <% if @popular_parent.any? %>
-    <%= render 'index', object: @popular_parent %>
-  <% else %>
-    <p>現在人気の取引がありません。</p>
-  <% end %>
-  <br>
-  <br>
-  <h1 class="page-title">最近開始された取引</h1>
+  <h1 class="page-title">取引一覧</h1>
   <div class="separator-2"></div>
   <% if @parents.any? %>
     <%= render 'index', object: @parents %>
